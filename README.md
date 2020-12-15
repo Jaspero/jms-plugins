@@ -1,5 +1,24 @@
 # JMS Plugins
 
+## Notes
+
+A custom element intended for use on overview pages. It's a way for 
+adding notes to any document. You would typically use it in `layout.table.actions` like this:
+
+```json
+{
+  "actions": [{
+    "value": `it => '<jms-e-notes data-id="' + it.id + '"></jms-e-notes>'`
+  }]
+}
+```
+
+### Setup
+
+Import the `JMSPNotesModule` in the `ModuleInstanceModule` in your JMS project.
+You're now ready to use the notes element inside of your schemas. This is the default
+selector `jms-e-notes`.
+
 ## Development
 
 ### Creating a plugin

@@ -1,5 +1,7 @@
-import {ChangeDetectionStrategy, Component, ElementRef, OnInit, TemplateRef, ViewChild} from '@angular/core';
+import {ChangeDetectionStrategy, Component, ElementRef, Injector, OnInit, TemplateRef, ViewChild} from '@angular/core';
+import {AngularFirestore} from '@angular/fire/firestore';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {MatDialog} from '@angular/material/dialog';
 import {from, Observable} from 'rxjs';
 import {take, tap} from 'rxjs/operators';
 import {Note} from './note.interface';
@@ -15,8 +17,7 @@ export class NotesComponent implements OnInit {
     private dialog: MatDialog,
     private el: ElementRef,
     private fb: FormBuilder,
-    private afs: AngularFirestore,
-    public state: StateService
+    private injector: Injector
   ) { }
 
   @ViewChild('notesDialog', {static: true})
@@ -26,13 +27,30 @@ export class NotesComponent implements OnInit {
   form: FormGroup;
   moduleId: string;
 
+  module$: Observable<any>;
+  user: any;
+  afs: AngularFirestore;
+
+  ngOnInit() {
+    this.module$ = this.injector.get<Observable<any>>(<any>'module');
+    this.user = this.injector.get<any>(<any>'stateService').user;
+
+    /**
+     * TODO:
+     * Currently it's only possible to use notes
+     * with firebase
+     */
+    this.afs = this.injector.get<any>(<any>'dbService').afs;
+
+  }
+
   open() {
 
     const {
       id
     } = this.el.nativeElement.dataset;
 
-    this.ic.module$.pipe(take(1)).subscribe(module => {
+    this.module$.pipe(take(1)).subscribe(module => {
 
       this.moduleId = [module.id, id, 'notes'].join('/');
 
@@ -61,8 +79,8 @@ export class NotesComponent implements OnInit {
           .set({
             ...this.form.getRawValue(),
             createdOn: Date.now(),
-            userId: this.state.user.id,
-            userName: this.state.user.name || this.state.user.email
+            userId: this.user.id,
+            userName: this.user.name || this.user.email
           })
       ).pipe(
         tap(() => {
