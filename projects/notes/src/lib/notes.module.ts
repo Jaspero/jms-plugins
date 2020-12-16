@@ -39,7 +39,7 @@ export class JMSPNotesModule {
   ) {
     if (!notesRegistered) {
       const element = createCustomElement(NotesComponent, {injector});
-      customElements.define(injector.get<string>(<any>'elementsPrefix') + '-notes', element);
+      customElements.define(injector.get<string>(<any>'elementsPrefix') + 'notes', element);
       notesRegistered = true;
     }
   }
