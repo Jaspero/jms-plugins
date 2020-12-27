@@ -1,0 +1,10 @@
+<div class="action-inset" (click)="open()">
+  <mat-icon>notes</mat-icon> {{'NOTES.TITLE' | transloco}}
+</div>
+
+<ng-template #notesDialog>
+  <h4 mat-dialog-title>{{'NOTES.TITLE' | transloco}}</h4>
+  <mat-dialog-content>
+    <jmsp-notes [id]="id"></jmsp-notes>
+  </mat-dialog-content>
+</ng-template>
