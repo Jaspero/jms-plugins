@@ -1,8 +1,8 @@
 import {ChangeDetectionStrategy, Component, Injector, Input, OnInit} from '@angular/core';
 import {AngularFirestore} from '@angular/fire/firestore';
-import {FormGroup} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Observable} from 'rxjs';
-import {map, switchMap, tap} from 'rxjs/operators';
+import {map, switchMap, take, tap} from 'rxjs/operators';
 import {Note} from '../../interfaces/note.interface';
 
 @Component({
@@ -13,7 +13,8 @@ import {Note} from '../../interfaces/note.interface';
 })
 export class NotesComponent implements OnInit {
   constructor(
-    private injector: Injector
+    private injector: Injector,
+    private fb: FormBuilder
   ) { }
 
   @Input()
@@ -53,13 +54,18 @@ export class NotesComponent implements OnInit {
             )
             .valueChanges({idField: 'id'})
         )
-      )
+      );
+
+    this.form = this.fb.group({
+      note: ['', Validators.required]
+    });
   }
 
   submit() {
     return () =>
       this.id$
         .pipe(
+          take(1),
           switchMap(id =>
             this.afs
               .collection(id)
@@ -81,6 +87,7 @@ export class NotesComponent implements OnInit {
     return () =>
       this.id$
         .pipe(
+          take(1),
           switchMap(moduleId =>
             this.afs
               .collection(moduleId)

@@ -48,7 +48,7 @@ export class JMSPNotesModule {
       const element = createCustomElement(NoteElementComponent, {injector});
       customElements.define(injector.get<string>(<any>'elementsPrefix') + 'notes', element);
 
-      this.ctx.registerField(
+      this.ctx.registerComponent(
         'note-view',
         NoteViewComponent
       );

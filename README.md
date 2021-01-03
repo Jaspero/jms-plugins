@@ -8,16 +8,31 @@ adding notes to any document. You would typically use it in `layout.table.action
 ```json
 {
   "actions": [{
-    "value": `it => '<jms-e-notes data-id="' + it.id + '"></jms-e-notes>'`
+    "value": "it => '<jms-e-notes data-id=' + it.id + '></jms-e-notes>'"
   }]
+}
+```
+
+or you can use the `note-view` element in a single instance:
+
+```json
+{
+  "instance": {
+    "segments": [
+      {
+        "components": [{
+          "selector": "note-view"
+        }]
+      }
+    ]
+  }
 }
 ```
 
 ### Setup
 
 Import the `JMSPNotesModule` in the `ModuleInstanceModule` in your JMS project.
-You're now ready to use the notes element inside of your schemas. This is the default
-selector `jms-e-notes`.
+You're now ready to use the notes element inside of your schemas.
 
 ## Development
 
