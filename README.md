@@ -34,11 +34,13 @@ or you can use the `note-view` element in a single instance:
 Import the `JMSPNotesModule` in the `ModuleInstanceModule` in your JMS project.
 You're now ready to use the notes element inside of your schemas.
 
+## Quick Edit
+
 ## Development
 
 ### Creating a plugin
 
-1. Run `ng g library [plugin-name]`
+1. Run `ng g library [plugin-name] --prefix=jmsp`
 2. Add `@jaspero/` prefix in the projects `package.json`
 3. Add a `release` property as well. Example from `notes` plugin.
     ```json

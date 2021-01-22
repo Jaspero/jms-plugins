@@ -7,7 +7,7 @@
       "projectType": "library",
       "root": "projects/notes",
       "sourceRoot": "projects/notes/src",
-      "prefix": "lib",
+      "prefix": "jmsp",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:ng-packagr",
@@ -36,6 +36,47 @@
             "tsConfig": [
               "projects/notes/tsconfig.lib.json",
               "projects/notes/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "quick-edit": {
+      "projectType": "library",
+      "root": "projects/quick-edit",
+      "sourceRoot": "projects/quick-edit/src",
+      "prefix": "jmsp",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "tsConfig": "projects/quick-edit/tsconfig.lib.json",
+            "project": "projects/quick-edit/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/quick-edit/tsconfig.lib.prod.json",
+              "project": "projects/quick-edit/ng-package.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/quick-edit/src/test.ts",
+            "tsConfig": "projects/quick-edit/tsconfig.spec.json",
+            "karmaConfig": "projects/quick-edit/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/quick-edit/tsconfig.lib.json",
+              "projects/quick-edit/tsconfig.spec.json"
             ],
             "exclude": [
               "**/node_modules/**"

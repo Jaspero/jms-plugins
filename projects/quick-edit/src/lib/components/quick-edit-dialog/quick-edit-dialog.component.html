@@ -1,0 +1,17 @@
+<h4 mat-dialog-title>{{'QUICK_EDIT.TITLE' | transloco}}</h4>
+
+<form>
+  <mat-dialog-content>
+    <fb-form-builder [data]="data.form" [state]="state"></fb-form-builder>
+  </mat-dialog-content>
+
+  <mat-dialog-actions class="jc-end">
+    <button
+      type="submit"
+      mat-flat-button
+      [disabled]="formBuilderComponent?.form.invalid"
+      [jpLoadClick]="save()">
+      {{'GENERAL.SAVE' | transloco}}
+    </button>
+  </mat-dialog-actions>
+</form>

@@ -23,6 +23,10 @@
       "notes": [
         "dist/notes/notes",
         "dist/notes"
+      ],
+      "quick-edit": [
+        "dist/quick-edit/quick-edit",
+        "dist/quick-edit"
       ]
     }
   }
