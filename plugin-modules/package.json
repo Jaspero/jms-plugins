@@ -1,7 +1,13 @@
 {
   "name": "@jaspero/jmsp-modules",
-  "version": "0.0.4",
+  "version": "0.0.5",
+  "scripts": {
+    "build": "tsc -d index.ts"
+  },
   "typings": "typings.d.ts",
   "sideEffects": false,
-  "main": "index.js"
+  "main": "index.js",
+  "devDependencies": {
+    "typescript": "4.1.5"
+  }
 }

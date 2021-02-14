@@ -51,7 +51,8 @@ export const HELP_PLUGIN_MODULE = {
       excerpt: {type: 'string'},
       short: {type: 'string'},
       full: {type: 'string'},
-      module: {type: 'string', default: 'general'}
+      module: {type: 'string', default: 'general'},
+      order: {type: 'number'}
     },
     required: [
       'title',
@@ -85,7 +86,7 @@ export const HELP_PLUGIN_MODULE = {
         configuration: {
           populate: {
             collection: 'modules',
-            mapResults: `it => [{id: 'general', name: 'General'}, ...its]`
+            mapResults: `it => [{id: 'general', name: 'General'}, ...it]`
           }
         }
       }
