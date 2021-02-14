@@ -1,0 +1,78 @@
+<div class="toolbar">
+  <div class="title">
+    {{article ? article.title : ('HELP_PLUGIN.TITLE' | transloco)}}
+  </div>
+  <div class="actions">
+    <button mat-icon-button *ngIf="isAdmin" (click)="edit()">
+      <mat-icon>edit</mat-icon>
+    </button>
+    <button mat-icon-button (mousedown)="startDrag()">
+      <mat-icon>drag_indicator</mat-icon>
+    </button>
+    <button mat-icon-button (click)="onEscape()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+</div>
+
+<div class="content">
+
+  <ng-container *ngIf="article; else allArticles">
+    <div class="s-article-content" [innerHTML]="article.short | jpSanitize">
+
+    </div>
+
+    <div class="s-article-footer">
+      <button mat-button (click)="back()">
+        <mat-icon>arrow_back</mat-icon>
+        {{'GENERAL.BACK' | transloco}}
+      </button>
+      <button *ngIf="article.full" mat-button (click)="readFull(article)">
+        {{'HELP_PLUGIN.READ_MORE' | transloco}}
+        <mat-icon>queue</mat-icon>
+      </button>
+    </div>
+  </ng-container>
+
+  <ng-template #allArticles>
+    <ng-container *ngIf="module$ | async as title">
+      <div class="articles" *ngIf="moduleArticles$ | async as articles">
+        <div class="articles-title">{{title | transloco}}</div>
+
+        <div class="article-empty" *ngIf="!articles.length; else notEmpty;">
+          {{'HELP_PLUGIN.NO_MODULE_ARTICLES' | transloco}}
+        </div>
+
+        <ng-template #notEmpty>
+          <div class="article" *ngFor="let article of articles" (click)="readMore(article)">
+            <div>
+              <div class="article-title">{{article.title}}</div>
+              <div class="article-excerpt" *ngIf="article.excerpt">{{article.excerpt}}</div>
+            </div>
+            <mat-icon>{{article.short ? 'navigate_next' : 'queue'}}</mat-icon>
+          </div>
+        </ng-template>
+      </div>
+    </ng-container>
+
+    <ng-container *ngIf="generalArticles$ | async as articles">
+      <div class="articles" *ngIf="articles.length">
+        <div class="articles-title">{{'HELP_PLUGIN.GENERAL_ARTICLES' | transloco}}</div>
+        <div class="article" *ngFor="let article of articles" (click)="readMore(article)">
+          <div>
+            <div class="article-title">{{article.title}}</div>
+            <div class="article-excerpt" *ngIf="article.excerpt">{{article.excerpt}}</div>
+          </div>
+          <mat-icon>{{article.short ? 'navigate_next' : 'queue'}}</mat-icon>
+        </div>
+      </div>
+    </ng-container>
+  </ng-template>
+</div>
+
+<ng-template #articleDialog>
+  <h4 mat-dialog-title>{{article.title}}</h4>
+  <mat-dialog-content>
+    <div [innerHTML]="article.full | jpSanitize"></div>
+  </mat-dialog-content>
+</ng-template>

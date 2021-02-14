@@ -84,6 +84,47 @@
           }
         }
       }
+    },
+    "help": {
+      "projectType": "library",
+      "root": "projects/help",
+      "sourceRoot": "projects/help/src",
+      "prefix": "jmsp",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "tsConfig": "projects/help/tsconfig.lib.json",
+            "project": "projects/help/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/help/tsconfig.lib.prod.json",
+              "project": "projects/help/ng-package.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/help/src/test.ts",
+            "tsConfig": "projects/help/tsconfig.spec.json",
+            "karmaConfig": "projects/help/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/help/tsconfig.lib.json",
+              "projects/help/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "defaultProject": "notes"

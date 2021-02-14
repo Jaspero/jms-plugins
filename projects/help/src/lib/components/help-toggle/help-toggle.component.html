@@ -1,0 +1,7 @@
+<div class="wrapper" (click)="toggle()">
+  <mat-icon aria-hidden="true" class="icon">help</mat-icon>
+  <span class="text">{{'HELP_PLUGIN.TITLE' | transloco}}</span>
+  <span class="tooltip" [matTooltip]="'HELP_PLUGIN.TITLE' | transloco" matTooltipPosition="right"></span>
+</div>
+
+<jmsp-help-flyout *ngIf="active"></jmsp-help-flyout>

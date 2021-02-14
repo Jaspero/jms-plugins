@@ -1,0 +1,7 @@
+{
+  "name": "@jaspero/jmsp-modules",
+  "version": "0.0.4",
+  "typings": "typings.d.ts",
+  "sideEffects": false,
+  "main": "index.js"
+}

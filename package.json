@@ -7,11 +7,11 @@
     "build": "npm run build:notes",
     "build:notes": "ng build --prod notes && cp ./README.md ./dist/@jaspero/jmsp-notes && cp LICENSE ./dist/@jaspero/jmsp-notes",
     "build:quick-edit": "ng build --prod quick-edit && cp ./README.md ./dist/@jaspero/jmsp-quick-edit && cp LICENSE ./dist/@jaspero/jmsp-quick-edit",
+    "build:help": "ng build --prod help && cp ./README.md ./dist/@jaspero/jmsp-help && cp LICENSE ./dist/@jaspero/jmsp-help",
     "test": "ng test",
     "lint": "ng lint",
     "semantic-release": "multi-semantic-release --debug"
   },
-  "private": true,
   "dependencies": {
     "@angular/animations": "11.0.5",
     "@angular/cdk": "11.0.3",

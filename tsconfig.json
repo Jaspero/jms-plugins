@@ -27,6 +27,10 @@
       "quick-edit": [
         "dist/quick-edit/quick-edit",
         "dist/quick-edit"
+      ],
+      "help": [
+        "dist/help/help",
+        "dist/help"
       ]
     }
   }
