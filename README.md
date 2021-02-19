@@ -56,7 +56,23 @@ A popup for help articles. It's module based and changes dynamically based on wh
         "TITLE": "Help",
         "NO_MODULE_ARTICLES": "There aren't any articles available for this module.",
         "GENERAL_ARTICLES": "General",
-        "READ_MORE": "Read More"
+        "READ_MORE": "Read More",
+        "INSTANCE": {
+          "GENERAL": "General",
+          "CONTENT": "Content"
+        },
+        "TABLE": {
+          "TITLE": "Title",
+          "MODULE": "Module",
+          "EXCERPT": "Excerpt"
+        },
+        "DEFINITIONS": {
+          "TITLE": "Title",
+          "EXCERPT": "Excerpt",
+          "SHORT_DESCRIPTION": "Short Description",
+          "CONTENT": "Content",
+          "MODULE": "Module"
+        }
       }
     ```
    

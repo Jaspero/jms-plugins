@@ -38,9 +38,9 @@ export const HELP_PLUGIN_MODULE = {
       hideImport: true,
       hideExport: true,
       tableColumns: [
-        {key: '/title', label: 'Title'},
-        {key: '/module', label: 'Module'},
-        {key: '/excerpt', label: 'Excerpt'}
+        {key: '/title', label: 'HELP_PLUGIN.TABLE.TITLE'},
+        {key: '/module', label: 'HELP_PLUGIN.TABLE.MODULE'},
+        {key: '/excerpt', label: 'HELP_PLUGIN.TABLE.EXCERPT'}
       ]
     }
   },
@@ -60,27 +60,27 @@ export const HELP_PLUGIN_MODULE = {
     ]
   },
   definitions: {
-    title: {label: 'Title'},
+    title: {label: 'HELP_PLUGIN.DEFINITIONS.TITLE'},
     excerpt: {
-      label: 'Excerpt',
+      label: 'HELP_PLUGIN.DEFINITIONS.EXCERPT',
       component: {
         type: 'textarea'
       }
     },
     short: {
-      label: 'Short Description',
+      label: 'HELP_PLUGIN.DEFINITIONS.SHORT_DESCRIPTION',
       component: {
         type: 'tinymce'
       }
     },
     full: {
-      label: 'Content',
+      label: 'HELP_PLUGIN.DEFINITIONS.CONTENT',
       component: {
         type: 'tinymce'
       }
     },
     module: {
-      label: 'Module',
+      label: 'HELP_PLUGIN.DEFINITIONS.MODULE',
       component: {
         type: 'select',
         configuration: {
