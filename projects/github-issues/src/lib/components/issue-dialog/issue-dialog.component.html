@@ -3,5 +3,5 @@
   <fb-form-builder #cForm [data]="data"></fb-form-builder>
 </mat-dialog-content>
 <mat-dialog-actions class="jc-end">
-  <button mat-stroked-button [jpLoadClick]="save()">{{'GITHUB_ISSUES_PLUGIN.CREATE_ISSUE_REPORT' | transloco}}</button>
+  <button mat-stroked-button [jpLoadClick]="save(cForm)">{{'GITHUB_ISSUES_PLUGIN.CREATE_ISSUE_REPORT' | transloco}}</button>
 </mat-dialog-actions>
