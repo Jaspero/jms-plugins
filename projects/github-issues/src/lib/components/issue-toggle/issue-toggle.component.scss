@@ -1,0 +1,52 @@
+$screen-m: 1200px;
+
+.wrapper {
+  position: relative;
+  cursor: pointer;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  height: 30px;
+  min-height: 30px;
+  padding-left: 24px;
+  box-shadow: 0 0 0 1px var(--sidebar-tertiary);
+  background: var(--sidebar-theme);
+  color: var(--sidebar-secondary);
+  transition: .2s;
+
+  @media (max-width: $screen-m) {
+    padding-left: 8px;
+  }
+
+  &:hover {
+    background: var(--sidebar-tertiary);
+  }
+}
+
+.icon {
+  min-width: 24px;
+  width: 16px;
+  height: 16px;
+  font-size: 16px;
+  text-align: center;
+}
+
+.text {
+  font-size: .85em;
+  margin-left: 16px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.tooltip {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  @media (max-width: $screen-m) {
+    display: block;
+  }
+}

@@ -1,16 +1,17 @@
 {
-  "name": "@jaspero/jmsp-help",
-  "version": "0.0.2",
+  "name": "@jaspero/jmsp-github-issues",
+  "version": "0.0.4",
   "peerDependencies": {
     "@angular/common": "^11.0.5",
     "@angular/core": "^11.0.5",
-    "@angular/material": "^11.0.0"
+    "@angular/material": "^11.0.0",
+    "@jaspero/fb-tinymce": "^1.4.1"
   },
   "dependencies": {
     "tslib": "^2.0.0"
   },
   "release": {
-    "pkgRoot": "../../dist/@jaspero/jmsp-help",
+    "pkgRoot": "../../dist/@jaspero/jmsp-github-issues",
     "branch": "master",
     "verifyConditions": [
       "@semantic-release/changelog",
@@ -28,14 +29,14 @@
         "@semantic-release/github",
         {
           "assets": [
-            "dist/@jaspero/jmsp-help"
+            "dist/@jaspero/jmsp-github-issues"
           ]
         }
       ]
     ],
     "plugins": [
       "@semantic-release/commit-analyzer",
-      "@semantic-release/release-help-generator"
+      "@semantic-release/release-github-issues-generator"
     ]
   }
 }

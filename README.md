@@ -78,12 +78,16 @@ A popup for help articles. It's module based and changes dynamically based on wh
    
 You can find an example implementation [here](https://github.com/Jaspero/jms/tree/example/help).
 
+## GitHub Issues
+
+A set of components for working with github issues.
+
 ## Development
 
 ### Creating a plugin
 
 1. Run `ng g library [plugin-name] --prefix=jmsp`
-2. Add `@jaspero/` prefix in the projects `package.json`
+2. Add `@jaspero/jmsp-` prefix in the projects `package.json`
 3. Add a `release` property. Example from `notes` plugin (remember to replace all references of "notes").
     ```json
       "release": {

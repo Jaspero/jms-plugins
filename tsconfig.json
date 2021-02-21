@@ -31,6 +31,10 @@
       "help": [
         "dist/help/help",
         "dist/help"
+      ],
+      "github-issues": [
+        "dist/github-issues/github-issues",
+        "dist/github-issues"
       ]
     }
   }

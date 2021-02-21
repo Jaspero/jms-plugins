@@ -8,6 +8,7 @@
     "build:notes": "ng build --prod notes && cp ./README.md ./dist/@jaspero/jmsp-notes && cp LICENSE ./dist/@jaspero/jmsp-notes",
     "build:quick-edit": "ng build --prod quick-edit && cp ./README.md ./dist/@jaspero/jmsp-quick-edit && cp LICENSE ./dist/@jaspero/jmsp-quick-edit",
     "build:help": "ng build --prod help && cp ./README.md ./dist/@jaspero/jmsp-help && cp LICENSE ./dist/@jaspero/jmsp-help",
+    "build:github-issues": "ng build --prod github-issues && cp ./README.md ./dist/@jaspero/jmsp-github-issues && cp LICENSE ./dist/@jaspero/jmsp-github-issues",
     "test": "ng test",
     "lint": "ng lint",
     "semantic-release": "multi-semantic-release --debug"
@@ -25,6 +26,7 @@
     "@angular/platform-browser": "11.0.5",
     "@angular/platform-browser-dynamic": "11.0.5",
     "@angular/router": "11.0.5",
+    "@jaspero/fb-tinymce": "^1.4.1",
     "@jaspero/form-builder": "3.13.0",
     "@jaspero/ng-helpers": "4.3.0",
     "@ngneat/transloco": "2.20.0",

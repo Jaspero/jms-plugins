@@ -125,6 +125,47 @@
           }
         }
       }
+    },
+    "github-issues": {
+      "projectType": "library",
+      "root": "projects/github-issues",
+      "sourceRoot": "projects/github-issues/src",
+      "prefix": "jmsp",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "tsConfig": "projects/github-issues/tsconfig.lib.json",
+            "project": "projects/github-issues/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/github-issues/tsconfig.lib.prod.json",
+              "project": "projects/github-issues/ng-package.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/github-issues/src/test.ts",
+            "tsConfig": "projects/github-issues/tsconfig.spec.json",
+            "karmaConfig": "projects/github-issues/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/github-issues/tsconfig.lib.json",
+              "projects/github-issues/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "defaultProject": "notes"
