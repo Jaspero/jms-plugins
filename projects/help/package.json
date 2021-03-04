@@ -34,8 +34,7 @@
       ]
     ],
     "plugins": [
-      "@semantic-release/commit-analyzer",
-      "@semantic-release/release-help-generator"
+      "@semantic-release/commit-analyzer"
     ]
   }
 }
