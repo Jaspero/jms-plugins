@@ -63,8 +63,7 @@ export class FileManagerComponent implements OnInit, OnDestroy {
 
         // return ref.child(route).listAll();
         return ref.child(route).list({
-          maxResults: 5,
-          // maxResults: 100,
+          maxResults: 100,
           pageToken: this.nextPageToken,
         });
       }),
