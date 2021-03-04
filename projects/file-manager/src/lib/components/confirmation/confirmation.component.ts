@@ -17,7 +17,7 @@ import {ConfirmationOptions} from './confirmation-options.interface';
 export class ConfirmationComponent implements OnInit {
   constructor(
     @Inject(MAT_DIALOG_DATA)
-    public inputOptions: Partial<ConfirmationOptions>
+    public inputOptions: any
   ) {}
 
   defaultOptions: ConfirmationOptions = {
