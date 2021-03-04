@@ -1,3 +1,16 @@
+# @jaspero/jmsp-notes [1.1.0](https://github.com/Jaspero/jms-plugins/compare/@jaspero/jmsp-notes@1.0.1...@jaspero/jmsp-notes@1.1.0) (2021-03-04)
+
+
+### Bug Fixes
+
+* **build:** added required material modules to notes plugin ([5d7c231](https://github.com/Jaspero/jms-plugins/commit/5d7c231b8949ac5c8133b70671ceb3b894b374d9))
+* **notes:** removed unused spec files ([23e3fb7](https://github.com/Jaspero/jms-plugins/commit/23e3fb7cbe12c180add3b156978933fbcd0609b5))
+
+
+### Features
+
+* **notes:** added component for injection in to single instance ([8d1a794](https://github.com/Jaspero/jms-plugins/commit/8d1a794986023510e5ea65e4286de4ca12f28298))
+
 ## @jaspero/jmsp-notes [1.0.1](https://github.com/Jaspero/jms-plugins/compare/@jaspero/jmsp-notes@1.0.0...@jaspero/jmsp-notes@1.0.1) (2020-12-16)
 
 
