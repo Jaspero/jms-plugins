@@ -1,11 +1,11 @@
-import {ChangeDetectionStrategy, Component, ElementRef, OnInit, TemplateRef, ViewChild} from '@angular/core';
-import {FormBuilder, FormControl, Validators} from '@angular/forms';
+import {ChangeDetectionStrategy, Component, ElementRef, OnDestroy, OnInit, TemplateRef, ViewChild} from '@angular/core';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {MatDialog, MatDialogRef} from '@angular/material/dialog';
 import {formatFileName} from '@jaspero/form-builder';
 import firebase from 'firebase/app';
 import 'firebase/storage';
-import {BehaviorSubject, Observable} from 'rxjs';
-import {map, startWith, switchMap, tap} from 'rxjs/operators';
+import {BehaviorSubject, Observable, Subscription} from 'rxjs';
+import {map, scan, startWith, switchMap, tap} from 'rxjs/operators';
 import {Color} from '../enums/color.enum';
 import {confirmation} from '../utils/confirmation';
 
@@ -15,11 +15,12 @@ import {confirmation} from '../utils/confirmation';
   styleUrls: ['./file-manager.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class FileManagerComponent implements OnInit {
+export class FileManagerComponent implements OnInit, OnDestroy {
   constructor(
     private dialog: MatDialog,
     private fb: FormBuilder
-  ) {}
+  ) {
+  }
 
   routeControl: FormControl;
   displayMode$ = new BehaviorSubject<'list' | 'grid'>('list');
@@ -41,6 +42,14 @@ export class FileManagerComponent implements OnInit {
   uploadDialogElement: TemplateRef<any>;
   uploadDialog: MatDialogRef<any>;
 
+  nextPageToken: string | undefined;
+
+  // tslint:disable-next-line:variable-name
+  _loadMore = false;
+
+  // tslint:disable-next-line:variable-name
+  _subscriptions: Subscription[] = [];
+
   ngOnInit(): void {
     this.routeControl = new FormControl('/', {
       updateOn: 'blur'
@@ -52,11 +61,15 @@ export class FileManagerComponent implements OnInit {
         this.loading$.next(true);
         const ref = firebase.storage().ref();
 
+        // return ref.child(route).listAll();
         return ref.child(route).list({
-          maxResults: 10
+          maxResults: 5,
+          // maxResults: 100,
+          pageToken: this.nextPageToken,
         });
       }),
       switchMap(response => {
+        this.nextPageToken = response.nextPageToken;
         return Promise.all([
           Promise.all(
             response.items.map(async (item) => {
@@ -88,8 +101,17 @@ export class FileManagerComponent implements OnInit {
           folders
         };
       }),
+      scan((data, item) => {
+        if (this._loadMore) {
+          data.files.push(...item.files);
+          data.folders.push(...item.folders);
+        } else {
+          data = item;
+        }
+        this._loadMore = false;
+        return data;
+      }, {files: [], folders: []}),
       tap((data) => {
-        console.log({data});
         this.loading$.next(false);
       })
     );
@@ -124,6 +146,7 @@ export class FileManagerComponent implements OnInit {
     const route = this.routeControl.value.split('/').filter(it => it);
     route.pop();
 
+    this.nextPageToken = undefined;
     this.routeControl.setValue('/' + route.join('/'));
   }
 
@@ -134,6 +157,7 @@ export class FileManagerComponent implements OnInit {
     }
     route += folder;
 
+    this.nextPageToken = undefined;
     this.routeControl.setValue(route);
   }
 
@@ -154,7 +178,7 @@ export class FileManagerComponent implements OnInit {
         return firebase.storage().ref(file.fullPath).delete();
       }),
       tap(() => {
-        this.routeControl.setValue(this.routeControl.value);
+        this.reset();
       })
     ], {
       description: 'STORAGE.DELETE_FILE.DESCRIPTION',
@@ -167,7 +191,7 @@ export class FileManagerComponent implements OnInit {
   }
 
   editFileMetadata(file) {
-    const keys = Object.keys(file.customMetadata);
+    const keys = Object.keys(file.customMetadata || {});
     this.metadataDialog = this.dialog.open(this.metadataDialogElement, {
       autoFocus: false,
       data: {
@@ -189,7 +213,9 @@ export class FileManagerComponent implements OnInit {
   openUploadDialog() {
     const form = this.fb.group({
       route: [this.routeControl.value],
-      file: [null, Validators.required]
+      file: [null, Validators.required],
+      uploadTask: [null],
+      paused: [false]
     });
 
     this.uploadDialog = this.dialog.open(this.uploadDialogElement, {
@@ -199,14 +225,25 @@ export class FileManagerComponent implements OnInit {
         form
       }
     });
+
+    this._subscriptions.push(
+      this.uploadDialog.afterClosed().pipe(
+        tap(() => {
+          this.uploadProgress$.next(0);
+          const uploadTask = form.get('uploadTask').value;
+
+          uploadTask?.cancel();
+        })
+      ).subscribe()
+    );
   }
 
   openFileUpload() {
     this.fileElement.nativeElement.click();
   }
 
-  async fileChange(event) {
-    const el = event.target as HTMLInputElement;
+  fileChange(form: FormGroup) {
+    const el = this.fileElement.nativeElement as HTMLInputElement;
     const file = Array.from(el.files as FileList)[0] as File;
 
     Object.defineProperty(file, 'name', {
@@ -214,9 +251,21 @@ export class FileManagerComponent implements OnInit {
       value: formatFileName(file.name)
     });
 
-    el.value = '';
+    form.get('file').setValue(file.name);
+  }
 
-    let route = this.routeControl.value;
+  async startUpload(form: FormGroup) {
+    const el = this.fileElement.nativeElement as HTMLInputElement;
+    const file = Array.from(el.files as FileList)[0] as File;
+
+    Object.defineProperty(file, 'name', {
+      writable: true,
+      value: formatFileName(file.name)
+    });
+
+    form.get('file').setValue(file.name);
+
+    let route = form.get('route').value;
 
     if (!route.endsWith('/')) {
       route += '/';
@@ -235,20 +284,17 @@ export class FileManagerComponent implements OnInit {
     }
 
     const uploadTask = firebase.storage().ref(route).put(file);
+    form.get('uploadTask').setValue(uploadTask);
 
     uploadTask.on('state_changed',
       (snapshot) => {
         const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
 
-        this.uploadProgress$.next(progress);
-
-        console.log('Upload is ' + progress + '% done');
+        this.uploadProgress$.next(Number(progress.toFixed(2)));
         switch (snapshot.state) {
           case firebase.storage.TaskState.PAUSED: // or 'paused'
-            console.log('Upload is paused');
             break;
           case firebase.storage.TaskState.RUNNING: // or 'running'
-            console.log('Upload is running');
             break;
         }
       },
@@ -256,9 +302,51 @@ export class FileManagerComponent implements OnInit {
         console.log({error});
       },
       () => {
+        el.value = '';
         this.uploadDialog.close();
-        this.routeControl.setValue(this.routeControl.value);
+        this.reset();
+        this.uploadProgress$.next(0);
       }
     );
+  }
+
+  cancelDownload(form: FormGroup) {
+    form.get('paused').setValue(false);
+    form.get('uploadTask').value.cancel();
+    this.uploadDialog.close();
+  }
+
+  pauseDownload(form: FormGroup) {
+    form.get('paused').setValue(true);
+    form.get('uploadTask').value.pause();
+  }
+
+  resumeDownload(form: FormGroup) {
+    form.get('paused').setValue(false);
+    form.get('uploadTask').value.resume();
+  }
+
+  reset() {
+    this.nextPageToken = undefined;
+    this.routeControl.setValue(this.routeControl.value);
+  }
+
+  loadMore() {
+    this._loadMore = true;
+    this.routeControl.setValue(this.routeControl.value);
+  }
+
+  loadImage(event, src) {
+    const parent = event.target;
+    const image = parent.querySelector('.fb-image-suffix-preview-image');
+    if (image) {
+      image.src = src;
+    }
+  }
+
+  ngOnDestroy() {
+    this._subscriptions.forEach(subscription => {
+      subscription.unsubscribe();
+    });
   }
 }

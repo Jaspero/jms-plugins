@@ -1,39 +1,42 @@
 <mat-toolbar role="heading" color="primary" class="sticky-header">
   <span>Storage</span>
   <div class="flex-1"></div>
+  <ng-container *ngIf="loading$ | async">
+    <mat-spinner diameter="30" color="accent" class="m-r-m"></mat-spinner>
+  </ng-container>
   <button mat-raised-button (click)="openUploadDialog()">
+    <mat-icon>upload</mat-icon>
     Upload
   </button>
-  <button mat-icon-button (click)="toggleDisplayMode()">
-    <mat-icon>{{(displayMode$ | async) === 'list' ? 'list' : 'view_modules'}}</mat-icon>
-  </button>
+  <!--  <button mat-icon-button (click)="toggleDisplayMode()">-->
+  <!--    <mat-icon>{{(displayMode$ | async) === 'list' ? 'list' : 'view_modules'}}</mat-icon>-->
+  <!--  </button>-->
 </mat-toolbar>
 
-<section class="grid">
-  <div class="col-12">
-
-    <div class="flex ai-base">
-      <div class="m-x-s">
-        <button mat-icon-button (click)="navigateBack()">
-          <mat-icon>arrow_back</mat-icon>
-        </button>
-      </div>
-      <mat-form-field appearance="outline" class="w-full">
-        <mat-label>Path</mat-label>
-        <input matInput [formControl]="routeControl" />
-      </mat-form-field>
+<section class="p-a-m">
+  <div class="flex ai-base">
+    <div class="m-x-s">
+      <button mat-icon-button (click)="navigateBack()">
+        <mat-icon>arrow_back</mat-icon>
+      </button>
     </div>
+    <mat-form-field appearance="outline" class="w-full">
+      <mat-label>Path</mat-label>
+      <input matInput [formControl]="routeControl" />
+    </mat-form-field>
+  </div>
 
-    <ng-container *ngIf="loading$ | async">
-      <div class="flex jc-center">
-        <mat-spinner diameter="30"></mat-spinner>
-      </div>
-    </ng-container>
-    <div *ngIf="data$ | async as data" [hidden]="loading$ | async">
-      <ng-container *ngIf="(displayMode$ | async) === 'list'; else grid">
+  <div *ngIf="data$ | async as data" [hidden]="(loading$ | async) && !_loadMore">
+    <ng-container *ngIf="(displayMode$ | async) === 'list'; else grid">
+      <mat-card>
+        <div class="w-full flex jc-end">
+          <button mat-button (click)="loadMore()" [disabled]="!nextPageToken">
+            Load More
+          </button>
+        </div>
         <mat-list>
           <div mat-subheader *ngIf="data.folders.length > 0">Folders</div>
-          <mat-list-item *ngFor="let folder of data.folders" class="flex">
+          <mat-list-item *ngFor="let folder of data.folders" class="flex no-select">
             <div class="flex-1 flex ai-center h-full item-bar" (dblclick)="appendFolder(folder.name)">
               <mat-icon mat-list-icon>{{folder.icon}}</mat-icon>
               <div class="item-name">
@@ -42,14 +45,23 @@
               </div>
             </div>
           </mat-list-item>
-          <mat-divider *ngIf="data.folders.length > 0"></mat-divider>
           <div mat-subheader *ngIf="data.files.length > 0">Files</div>
-          <mat-list-item *ngFor="let file of data.files" class="flex">
+          <mat-list-item *ngFor="let file of data.files" class="flex no-select">
             <div class="flex-1 flex ai-center h-full item-bar">
-              <mat-icon mat-list-icon>{{file.icon}}</mat-icon>
+
+              <div class="fb-image-suffix-preview" (mouseenter)="loadImage($event, file.downloadLink)">
+                <button class="fb-image-suffix-preview-button" mat-icon-button>
+                  <mat-icon mat-list-icon>{{file.icon}}</mat-icon>
+                </button>
+                <img class="fb-image-suffix-preview-image" alt="Image Preview" *ngIf="file.contentType.startsWith('image/')">
+              </div>
               <div class="item-name">
                 <div mat-line>{{file.name}}</div>
                 <div mat-line>{{file.updated | date}}</div>
+              </div>
+
+              <div class="w-full flex jc-end m-r-m">
+                <div>{{file.size | fileSize}}</div>
               </div>
             </div>
             <div class="flex jc-center m-l-m">
@@ -73,22 +85,24 @@
             </mat-menu>
           </mat-list-item>
         </mat-list>
-      </ng-container>
-      <ng-template #grid>
-        <div class="grid">
-          <mat-card class="col-4 col-m-6 col-s-12" *ngFor="let folder of data.folders">
-            <div class="flex ai-center h-full">
-              <mat-icon mat-list-icon>folder</mat-icon> <span class="item-name">{{folder.name}}</span>
-            </div>
-          </mat-card>
-          <mat-card class="col-4 col-m-6 col-s-12" *ngFor="let file of data.files">
-            <div class="flex ai-center h-full">
-              <mat-icon mat-list-icon>{{file.icon}}</mat-icon> <span class="item-name">{{file.name}}</span>
-            </div>
-          </mat-card>
-        </div>
-      </ng-template>
-    </div>
+      </mat-card>
+    </ng-container>
+    <ng-template #grid>
+      <div class="grid">
+        <mat-card class="col-4 col-m-6 col-s-12" *ngFor="let folder of data.folders">
+          <div class="flex ai-center h-full">
+            <mat-icon mat-list-icon>folder</mat-icon>
+            <span class="item-name">{{folder.name}}</span>
+          </div>
+        </mat-card>
+        <mat-card class="col-4 col-m-6 col-s-12" *ngFor="let file of data.files">
+          <div class="flex ai-center h-full">
+            <mat-icon mat-list-icon>{{file.icon}}</mat-icon>
+            <span class="item-name">{{file.name}}</span>
+          </div>
+        </mat-card>
+      </div>
+    </ng-template>
   </div>
 </section>
 
@@ -101,12 +115,12 @@
 <ng-template #upload let-data>
   <h1>Upload File</h1>
 
-  <input #file type="file" hidden (change)="fileChange($event)">
+  <input #file type="file" hidden (change)="fileChange(data.form)">
 
   <form [formGroup]="data.form" class="m-t-m">
     <mat-form-field appearance="outline" class="w-full">
       <mat-label>Folder</mat-label>
-      <input matInput formControlName="route" />
+      <input matInput formControlName="route" [readOnly]="data.form.get('uploadTask').value" />
     </mat-form-field>
 
     <mat-form-field appearance="outline" class="w-full">
@@ -120,7 +134,31 @@
     </mat-form-field>
   </form>
 
-  <div>
-    <mat-progress-bar mode="determinate" [value]="uploadProgress$ | async"></mat-progress-bar>
+  <div *ngIf="uploadProgress$ | async as progress" class="w-full flex ai-center">
+    <mat-progress-bar class="flex-1" mode="determinate" color="accent" [value]="progress"></mat-progress-bar>
+    <b>{{progress}} %</b>
+  </div>
+
+  <div class="w-full flex jc-end m-t-m">
+    <div class="m-r-m" *ngIf="data.form.get('uploadTask').value && !data.form.get('paused').value">
+      <button mat-raised-button (click)="pauseDownload(data.form)">
+        Pause
+      </button>
+    </div>
+    <div class="m-r-m" *ngIf="data.form.get('uploadTask').value && data.form.get('paused').value">
+      <button mat-raised-button (click)="resumeDownload(data.form)">
+        Resume
+      </button>
+    </div>
+    <div class="m-r-m" *ngIf="data.form.get('uploadTask').value">
+      <button mat-raised-button (click)="cancelDownload(data.form)" color="accent">
+        Cancel
+      </button>
+    </div>
+    <div>
+      <button mat-raised-button (click)="startUpload(data.form)" color="primary" [disabled]="!file.files.length">
+        Upload
+      </button>
+    </div>
   </div>
 </ng-template>
