@@ -82,6 +82,26 @@ You can find an example implementation [here](https://github.com/Jaspero/jms/tre
 
 A set of components for working with github issues.
 
+## File Manager
+
+A module for managing storage
+
+### Setup
+
+1. Install the plugin `npm i --save @jmsp/file-manage`
+2. ...
+3. Add translations. This is the english version:
+    ```json
+    {
+      "STORAGE_PLUGIN": {
+        "DELETE_FILE": {
+          "DESCRIPTION": "File '{{name}}' will be deleted!",
+          "CONFIRM": "Delete"
+        }
+      }
+    }    
+    ```
+
 ## Development
 
 ### Creating a plugin

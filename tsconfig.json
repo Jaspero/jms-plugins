@@ -35,6 +35,10 @@
       "github-issues": [
         "dist/github-issues/github-issues",
         "dist/github-issues"
+      ],
+      "file-manager": [
+        "dist/file-manager/file-manager",
+        "dist/file-manager"
       ]
     }
   }
