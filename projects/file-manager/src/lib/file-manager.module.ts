@@ -9,14 +9,19 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatInputModule} from '@angular/material/input';
 import {MatListModule} from '@angular/material/list';
 import {MatMenuModule} from '@angular/material/menu';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {DbService, FormBuilderContextService, FormBuilderModule} from '@jaspero/form-builder';
 import {TranslocoModule} from '@ngneat/transloco';
+import { ConfirmationComponent } from './components/confirmation/confirmation.component';
 import {FileManagerComponent} from './file-manager/file-manager.component';
 
 @NgModule({
-  declarations: [FileManagerComponent],
+  declarations: [
+    FileManagerComponent,
+    ConfirmationComponent
+  ],
   imports: [
     CommonModule,
     ReactiveFormsModule,
@@ -33,6 +38,7 @@ import {FileManagerComponent} from './file-manager/file-manager.component';
     MatMenuModule,
     MatCardModule,
     MatDialogModule,
+    MatProgressBarModule,
 
     TranslocoModule
   ],
