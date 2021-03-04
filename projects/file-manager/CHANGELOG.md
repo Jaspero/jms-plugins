@@ -1,3 +1,10 @@
+# @jaspero/jmsp-file-manager [1.1.0](https://github.com/Jaspero/jms-plugins/compare/@jaspero/jmsp-file-manager@1.0.0...@jaspero/jmsp-file-manager@1.1.0) (2021-03-04)
+
+
+### Features
+
+* **file-manager:** load more files. image preview on hover. manipulate with upload task in progress. show file sizes ([a3bd600](https://github.com/Jaspero/jms-plugins/commit/a3bd600ca957fc54d6007e27926a06ae35d1b435))
+
 # @jaspero/jmsp-file-manager 1.0.0 (2021-03-04)
 
 
