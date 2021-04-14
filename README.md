@@ -88,7 +88,7 @@ A module for managing storage
 
 ### Setup
 
-1. Install the plugin `npm i --save @jmsp/file-manager`
+1. Install the plugin `npm i --save @jaspero/jmsp-file-manager`
 2. ...
 3. Add translations. This is the english version:
     ```json
