@@ -1,3 +1,10 @@
+## @jaspero/jmsp-file-manager [1.1.1](https://github.com/Jaspero/jms-plugins/compare/@jaspero/jmsp-file-manager@1.1.0...@jaspero/jmsp-file-manager@1.1.1) (2021-03-04)
+
+
+### Bug Fixes
+
+* **file-manager:** bump max results to 100 ([ff4f307](https://github.com/Jaspero/jms-plugins/commit/ff4f3072d63ca696809d1f18b39c0cb99f65d2c5))
+
 # @jaspero/jmsp-file-manager [1.1.0](https://github.com/Jaspero/jms-plugins/compare/@jaspero/jmsp-file-manager@1.0.0...@jaspero/jmsp-file-manager@1.1.0) (2021-03-04)
 
 
