@@ -1,3 +1,10 @@
+## @jaspero/jmsp-file-manager [1.2.2](https://github.com/Jaspero/jms-plugins/compare/@jaspero/jmsp-file-manager@1.2.1...@jaspero/jmsp-file-manager@1.2.2) (2021-04-15)
+
+
+### Bug Fixes
+
+* **file-manager:** append slash to folder names, button margins cleanup ([cc3446a](https://github.com/Jaspero/jms-plugins/commit/cc3446afb9e010354321d0ae8f796d56d6f45112))
+
 ## @jaspero/jmsp-file-manager [1.2.1](https://github.com/Jaspero/jms-plugins/compare/@jaspero/jmsp-file-manager@1.2.0...@jaspero/jmsp-file-manager@1.2.1) (2021-04-15)
 
 
