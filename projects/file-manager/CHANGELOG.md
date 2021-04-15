@@ -1,3 +1,10 @@
+## @jaspero/jmsp-file-manager [1.2.1](https://github.com/Jaspero/jms-plugins/compare/@jaspero/jmsp-file-manager@1.2.0...@jaspero/jmsp-file-manager@1.2.1) (2021-04-15)
+
+
+### Bug Fixes
+
+* **file-manager:** close new folder dialog on success. fix form control ([0ddf2f6](https://github.com/Jaspero/jms-plugins/commit/0ddf2f61ce8d95861b467166502637ab48636e1a))
+
 # @jaspero/jmsp-file-manager [1.2.0](https://github.com/Jaspero/jms-plugins/compare/@jaspero/jmsp-file-manager@1.1.1...@jaspero/jmsp-file-manager@1.2.0) (2021-04-15)
 
 
