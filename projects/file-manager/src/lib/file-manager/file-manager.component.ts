@@ -270,8 +270,8 @@ export class FileManagerComponent implements OnInit, OnDestroy {
     ]).pipe(
       map(([data, route]) => {
         return data.folders.filter(folder => {
-          return folder.name.toLowerCase().indexOf((route || '').toLowerCase()) > -1;
-        }).map(folder => folder.name);
+          return folder.name.toLowerCase().replace(/\//g, '').indexOf((route || '').replace(/\//g, '').toLowerCase()) > -1;
+        }).map(folder => '/' + folder.name);
       })
     );
 

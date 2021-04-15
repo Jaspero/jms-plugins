@@ -4,7 +4,7 @@
   <ng-container *ngIf="loading$ | async">
     <mat-spinner diameter="30" color="accent" class="m-r-m"></mat-spinner>
   </ng-container>
-  <button mat-raised-button (click)="openNewFolderDialog()" class="m-r-m">
+  <button mat-raised-button (click)="openNewFolderDialog()" class="m-r-m-i">
     <mat-icon>create_new_folder</mat-icon>
     New Folder
   </button>
@@ -182,7 +182,7 @@
       </button>
     </div>
     <div>
-      <button mat-raised-button *ngIf="!data.form.get('uploadTask').value" (click)="startUpload(data.form)" color="primary" [disabled]="!file.files.length">
+      <button mat-raised-button (click)="startUpload(data.form)" color="primary" [disabled]="!file.files.length || !!data.form.get('uploadTask').value">
         Upload
       </button>
     </div>
