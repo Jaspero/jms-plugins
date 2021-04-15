@@ -236,21 +236,24 @@ export class FileManagerComponent implements OnInit, OnDestroy {
   }
 
   openNewFolderDialog() {
-    const nameControl = new FormControl('', Validators.required);
+    const form = this.fb.group({
+      name: ['', Validators.required]
+    });
+    // const nameControl = new FormControl('', Validators.required);
 
     this.newFolderDialog = this.dialog.open(this.newFolderDialogElement, {
       autoFocus: true,
       width: '600px',
       data: {
-        nameControl
+        form
       }
     });
   }
 
-  createNewFolder(nameControl: FormControl) {
-    const name = nameControl.value;
+  createNewFolder(form: FormGroup) {
+    this.appendFolder(form.controls.name.value);
 
-    this.appendFolder(name);
+    this.newFolderDialog.close();
   }
 
   openUploadDialog() {

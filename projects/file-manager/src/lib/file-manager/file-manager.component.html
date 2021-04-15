@@ -4,7 +4,7 @@
   <ng-container *ngIf="loading$ | async">
     <mat-spinner diameter="30" color="accent" class="m-r-m"></mat-spinner>
   </ng-container>
-  <button mat-raised-button (click)="openNewFolderDialog()">
+  <button mat-raised-button (click)="openNewFolderDialog()" class="m-r-m">
     <mat-icon>create_new_folder</mat-icon>
     New Folder
   </button>
@@ -119,13 +119,15 @@
 <ng-template #newFolder let-data>
   <h1>Create a New Folder</h1>
 
-  <mat-form-field appearance="outline" class="w-full">
-    <mat-label>Name</mat-label>
-    <input [formControl]="data.nameControl">
-  </mat-form-field>
+  <form [formGroup]="data.form">
+    <mat-form-field appearance="outline" class="w-full">
+      <mat-label>Name</mat-label>
+      <input matInput formControlName="name">
+    </mat-form-field>
+  </form>
 
   <div class="w-full flex jc-end m-t-m">
-    <button mat-raised-button color="primary" (click)="createNewFolder(data.nameControl)" [disabled]="data.nameControl.invalid">
+    <button mat-raised-button color="primary" (click)="createNewFolder(data.form)" [disabled]="data.form.invalid">
       Create
     </button>
   </div>
