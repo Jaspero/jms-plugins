@@ -1,3 +1,10 @@
+# @jaspero/jmsp-file-manager [1.2.0](https://github.com/Jaspero/jms-plugins/compare/@jaspero/jmsp-file-manager@1.1.1...@jaspero/jmsp-file-manager@1.2.0) (2021-04-15)
+
+
+### Features
+
+* **file-manager:** hide upload button during uploading, show dropdown list during upload, added new folder button [#5](https://github.com/Jaspero/jms-plugins/issues/5) [#6](https://github.com/Jaspero/jms-plugins/issues/6) [#8](https://github.com/Jaspero/jms-plugins/issues/8) ([05a9940](https://github.com/Jaspero/jms-plugins/commit/05a99404211ee9a0474cebb3628ea85a943329cc))
+
 ## @jaspero/jmsp-file-manager [1.1.1](https://github.com/Jaspero/jms-plugins/compare/@jaspero/jmsp-file-manager@1.1.0...@jaspero/jmsp-file-manager@1.1.1) (2021-03-04)
 
 
