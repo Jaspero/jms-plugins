@@ -1,13 +1,13 @@
-import {ChangeDetectionStrategy, Component, ElementRef, OnDestroy, OnInit, TemplateRef, ViewChild} from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import {MatDialog, MatDialogRef} from '@angular/material/dialog';
-import {formatFileName} from '@jaspero/form-builder';
+import { ChangeDetectionStrategy, Component, ElementRef, OnDestroy, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { formatFileName } from '@jaspero/form-builder';
 import firebase from 'firebase/app';
 import 'firebase/storage';
-import {BehaviorSubject, Observable, Subscription} from 'rxjs';
-import {map, scan, startWith, switchMap, tap} from 'rxjs/operators';
-import {Color} from '../enums/color.enum';
-import {confirmation} from '../utils/confirmation';
+import { BehaviorSubject, combineLatest, Observable, Subscription } from 'rxjs';
+import { map, scan, shareReplay, startWith, switchMap, tap } from 'rxjs/operators';
+import { Color } from '../enums/color.enum';
+import { confirmation } from '../utils/confirmation';
 
 @Component({
   selector: 'jmsp-file-manager',
@@ -28,6 +28,7 @@ export class FileManagerComponent implements OnInit, OnDestroy {
     files: any[];
     folders: any[];
   }>;
+  filteredFolders$: Observable<string[]>;
   loading$ = new BehaviorSubject(false);
   uploadProgress$ = new BehaviorSubject(0);
 
@@ -41,6 +42,10 @@ export class FileManagerComponent implements OnInit, OnDestroy {
   @ViewChild('upload')
   uploadDialogElement: TemplateRef<any>;
   uploadDialog: MatDialogRef<any>;
+
+  @ViewChild('newFolder')
+  newFolderDialogElement: TemplateRef<any>;
+  newFolderDialog: MatDialogRef<any>;
 
   nextPageToken: string | undefined;
 
@@ -110,9 +115,10 @@ export class FileManagerComponent implements OnInit, OnDestroy {
         this._loadMore = false;
         return data;
       }, {files: [], folders: []}),
-      tap((data) => {
+      tap(() => {
         this.loading$.next(false);
-      })
+      }),
+      shareReplay(1)
     );
   }
 
@@ -122,20 +128,40 @@ export class FileManagerComponent implements OnInit, OnDestroy {
   }
 
   typeToIcon(type = '') {
-    if (type.startsWith('image/')) {
-      return 'insert_photo';
-    }
-
     if (type === 'application/pdf') {
       return 'picture_as_pdf';
     }
 
-    if (type === 'application/zip') {
-      return 'compress';
+    if (type === 'application/zip' || type === 'application/vnd.rar') {
+      return 'inventory_2';
+    }
+
+    if (type === 'application/json') {
+      return 'library_books';
+    }
+
+    if (type === 'application/msword') {
+      return 'description';
+    }
+
+    if (type.startsWith('image/')) {
+      return 'insert_photo';
     }
 
     if (type.startsWith('text/')) {
       return 'article';
+    }
+
+    if (type.startsWith('audio/')) {
+      return 'headphones';
+    }
+
+    if (type.startsWith('video/')) {
+      return 'movie';
+    }
+
+    if (type.startsWith('font/')) {
+      return 'text_fields';
     }
 
     return 'note';
@@ -209,6 +235,24 @@ export class FileManagerComponent implements OnInit, OnDestroy {
     });
   }
 
+  openNewFolderDialog() {
+    const nameControl = new FormControl('', Validators.required);
+
+    this.newFolderDialog = this.dialog.open(this.newFolderDialogElement, {
+      autoFocus: true,
+      width: '600px',
+      data: {
+        nameControl
+      }
+    });
+  }
+
+  createNewFolder(nameControl: FormControl) {
+    const name = nameControl.value;
+
+    this.appendFolder(name);
+  }
+
   openUploadDialog() {
     const form = this.fb.group({
       route: [this.routeControl.value],
@@ -216,6 +260,17 @@ export class FileManagerComponent implements OnInit, OnDestroy {
       uploadTask: [null],
       paused: [false]
     });
+
+    this.filteredFolders$ = combineLatest([
+      this.data$,
+      form.controls.route.valueChanges.pipe(startWith(form.controls.route.value))
+    ]).pipe(
+      map(([data, route]) => {
+        return data.folders.filter(folder => {
+          return folder.name.toLowerCase().indexOf((route || '').toLowerCase()) > -1;
+        }).map(folder => folder.name);
+      })
+    );
 
     this.uploadDialog = this.dialog.open(this.uploadDialogElement, {
       autoFocus: false,
