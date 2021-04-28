@@ -4,12 +4,11 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "npm run build:notes && npm run build:quick-edit && npm run build:help && npm run build:github-issues && npm run build:file-manager",
+    "build": "npm run build:notes && npm run build:quick-edit && npm run build:help && npm run build:github-issues",
     "build:notes": "ng build --prod notes && cp ./README.md ./dist/@jaspero/jmsp-notes && cp LICENSE ./dist/@jaspero/jmsp-notes",
     "build:quick-edit": "ng build --prod quick-edit && cp ./README.md ./dist/@jaspero/jmsp-quick-edit && cp LICENSE ./dist/@jaspero/jmsp-quick-edit",
     "build:help": "ng build --prod help && cp ./README.md ./dist/@jaspero/jmsp-help && cp LICENSE ./dist/@jaspero/jmsp-help",
     "build:github-issues": "ng build --prod github-issues && cp ./README.md ./dist/@jaspero/jmsp-github-issues && cp LICENSE ./dist/@jaspero/jmsp-github-issues",
-    "build:file-manager": "ng build --prod file-manager && cp ./README.md ./dist/@jaspero/jmsp-file-manager && cp LICENSE ./dist/@jaspero/jmsp-file-manager",
     "test": "ng test",
     "lint": "ng lint",
     "semantic-release": "multi-semantic-release --debug"
