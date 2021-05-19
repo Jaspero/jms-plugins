@@ -4,4 +4,5 @@ export interface HelpArticle {
   short?: string;
   full?: string;
   module: string;
+  roles?: string[];
 }

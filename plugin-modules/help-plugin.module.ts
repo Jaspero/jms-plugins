@@ -21,7 +21,8 @@ export const HELP_PLUGIN_MODULE = {
           title: 'HELP_PLUGIN.INSTANCE.GENERAL',
           fields: [
             '/title',
-            '/module'
+            '/module',
+            '/roles'
           ]
         },
         {
@@ -52,7 +53,8 @@ export const HELP_PLUGIN_MODULE = {
       short: {type: 'string'},
       full: {type: 'string'},
       module: {type: 'string', default: 'general'},
-      order: {type: 'number'}
+      order: {type: 'number'},
+      roles: {type: 'array'}
     },
     required: [
       'title',
@@ -87,6 +89,18 @@ export const HELP_PLUGIN_MODULE = {
           populate: {
             collection: 'modules',
             mapResults: `it => [{id: 'general', name: 'General'}, ...it]`
+          }
+        }
+      }
+    },
+    roles: {
+      label: 'Roles',
+      component: {
+        type: 'select',
+        configuration: {
+          multiple: true,
+          populate: {
+            collection: 'roles'
           }
         }
       }
