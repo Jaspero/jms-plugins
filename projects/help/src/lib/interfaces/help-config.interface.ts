@@ -3,4 +3,5 @@ export interface HelpConfig {
   height?: number;
   top?: number;
   left?: number;
+  canEdit?: string[];
 }

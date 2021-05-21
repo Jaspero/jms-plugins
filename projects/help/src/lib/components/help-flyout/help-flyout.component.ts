@@ -52,8 +52,8 @@ export class HelpFlyoutComponent implements OnInit {
 
   private stateService: {role: string, page$: Observable<{module?: {id: string, name: string}}>};
 
-  get isAdmin() {
-    return this.stateService.role === 'admin';
+  get canEdit() {
+    return this.config.canEdit.includes(this.stateService.role);
   }
 
   ngOnInit() {

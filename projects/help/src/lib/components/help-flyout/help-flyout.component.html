@@ -3,7 +3,7 @@
     {{article ? article.title : ('HELP_PLUGIN.TITLE' | transloco)}}
   </div>
   <div class="actions">
-    <button mat-icon-button *ngIf="isAdmin" (click)="edit()">
+    <button mat-icon-button *ngIf="canEdit" (click)="edit()">
       <mat-icon>edit</mat-icon>
     </button>
     <button mat-icon-button (mousedown)="startDrag()">

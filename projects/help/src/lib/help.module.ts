@@ -20,6 +20,7 @@ export function configWrapper(config: HelpConfig) {
     height: 500,
     top: 20,
     left: 20,
+    canEdit: ['admin'],
     ...config
   })
 }
