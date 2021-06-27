@@ -1,3 +1,10 @@
+# @jaspero/jmsp-quick-edit [1.1.0](https://github.com/Jaspero/jms-plugins/compare/@jaspero/jmsp-quick-edit@1.0.0...@jaspero/jmsp-quick-edit@1.1.0) (2021-06-27)
+
+
+### Features
+
+* ng v12 update closes [#10](https://github.com/Jaspero/jms-plugins/issues/10) ([1d48b07](https://github.com/Jaspero/jms-plugins/commit/1d48b070c3ce51c702ae9d2987a828b6e587efdc))
+
 # @jaspero/jmsp-quick-edit 1.0.0 (2021-03-04)
 
 
