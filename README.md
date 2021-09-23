@@ -33,7 +33,7 @@ or you can use the `note-view` element in a single instance:
 
 ### Setup
 
-1. Install the plugin `npm i --save @jmsp/notes`
+1. Install the plugin `npm i --save @jaspero/jmsp-notes`
 2. Import the `JMSPNotesModule` in the `ModuleInstanceModule` in your JMS project.
 
 ## Quick Edit
@@ -46,7 +46,7 @@ A popup for help articles. It's module based and changes dynamically based on wh
 
 ### Setup
 
-1. Install the plugin `npm i --save @jmsp/help`
+1. Install the plugin `npm i --save @jaspero/jmsp-help`
 2. Import the `JMSPHelpModule` in the `DashboardModule` in your JMS project. You can use `JMSPHelpModule.forRoot()` to configure height, width as well as top and left position.
 3. Add `<jmsp-help-toggle></jmsp-help-toggle>` somewhere in your project (it's mainly intended to go in the layout navigation).
 4. In order to be able to add articles through JMS you will need to install the projects module `npm i --save @jaspero/jmsp-modules` in `setup` as well and add `HELP_PLUGIN_MODULE` to `modules.ts`.
