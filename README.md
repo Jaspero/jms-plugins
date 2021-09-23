@@ -75,6 +75,23 @@ A popup for help articles. It's module based and changes dynamically based on wh
         }
       }
     ```
+6. You will also need to add the following firestore index:
+   ```json
+   {
+     "collectionGroup": "help",
+     "queryScope": "COLLECTION",
+     "fields": [
+       {
+         "fieldPath": "module",
+         "order": "ASCENDING"
+       },
+       {
+         "fieldPath": "order",
+         "order": "ASCENDING"
+       }
+     ]
+   }
+   ```  
    
 You can find an example implementation [here](https://github.com/Jaspero/jms/tree/example/help).
 
