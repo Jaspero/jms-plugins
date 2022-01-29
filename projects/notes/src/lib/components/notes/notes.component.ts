@@ -41,7 +41,7 @@ export class NotesComponent implements OnInit {
           this.module = module;
           this.collection = [module.id, this.id, this.notesCollection].join('/');
 
-          return this.db.getDocumentsSimple(this.collection, {active: 'createdOn', direction: 'desc'})
+          return this.db.getDocumentsSimple(this.collection, {active: 'createdOn', direction: 'asc'})
         })
       )
       .subscribe((notes: any[]) => {
