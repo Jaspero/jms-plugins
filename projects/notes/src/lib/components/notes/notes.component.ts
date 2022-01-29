@@ -57,7 +57,7 @@ export class NotesComponent implements OnInit {
   submit() {
     return () => {
 
-      const docIdPrefix = this.module.metadata?.docIdPrefix || module.id.slice(0, 2);
+      const docIdPrefix = this.module.metadata?.docIdPrefix || this.module.id.slice(0, 2);
       const docIdSize = this.module.metadata?.docIdSize || 12;
       const id = `${docIdPrefix}-${this.collection.slice(0, 2)}-${random.string(docIdSize)}`;
       const data = {
