@@ -1,3 +1,16 @@
+# @jaspero/jmsp-quick-edit [1.2.0](https://github.com/Jaspero/jms-plugins/compare/@jaspero/jmsp-quick-edit@1.1.0...@jaspero/jmsp-quick-edit@1.2.0) (2022-01-29)
+
+
+### Bug Fixes
+
+* **quick-edit:** importing safeEval from utils ([33dbe15](https://github.com/Jaspero/jms-plugins/commit/33dbe159a52aa490fb39b27f220fb280ae07b9ff))
+* **quick-edit:** importing safeEval from utils ([b7424ef](https://github.com/Jaspero/jms-plugins/commit/b7424efac9b9fa60e9be5523970049fc899b4fe5))
+
+
+### Features
+
+* updates for new version of jms ([4487eb0](https://github.com/Jaspero/jms-plugins/commit/4487eb03c1b72884a1525ab66a2dbb53b00f0f6a))
+
 # @jaspero/jmsp-quick-edit [1.1.0](https://github.com/Jaspero/jms-plugins/compare/@jaspero/jmsp-quick-edit@1.0.0...@jaspero/jmsp-quick-edit@1.1.0) (2021-06-27)
 
 
