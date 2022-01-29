@@ -1,6 +1,7 @@
 import {ChangeDetectionStrategy, Component, ElementRef, Injector, OnInit, ViewChild} from '@angular/core';
 import {MatDialog} from '@angular/material/dialog';
-import {FormBuilderComponent, safeEval} from '@jaspero/form-builder';
+import {FormBuilderComponent} from '@jaspero/form-builder';
+import {safeEval} from '@jaspero/utils';
 import {Observable} from 'rxjs';
 import {map, switchMap} from 'rxjs/operators';
 import {QuickEditDialogComponent} from '../quick-edit-dialog/quick-edit-dialog.component';
