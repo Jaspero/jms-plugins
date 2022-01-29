@@ -1,6 +1,7 @@
 import {ChangeDetectionStrategy, Component, Inject, ViewChild} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
-import {FormBuilderComponent, safeEval, State} from '@jaspero/form-builder';
+import {FormBuilderComponent, State} from '@jaspero/form-builder';
+import {safeEval} from '@jaspero/utils';
 import {switchMap, tap} from 'rxjs/operators';
 
 @Component({
