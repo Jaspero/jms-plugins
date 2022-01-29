@@ -4,7 +4,8 @@
   "peerDependencies": {
     "@angular/common": "^13.0.0",
     "@angular/core": "^13.0.0",
-    "@angular/material": "^13.0.0"
+    "@angular/material": "^13.0.0",
+    "@ngneat/transloco": "^2.21.0"
   },
   "dependencies": {
     "tslib": "^2.0.0"

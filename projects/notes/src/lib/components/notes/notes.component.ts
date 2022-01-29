@@ -31,7 +31,7 @@ export class NotesComponent implements OnInit {
   form: FormGroup;
 
   ngOnInit() {
-    this.db = this.injector.get<any>(<any> 'dbService').afs;
+    this.db = this.injector.get<any>(<any> 'dbService');
     this.user = this.injector.get<any>(<any> 'stateService').user;
 
     this.injector.get<Observable<any>>(<any> 'module')

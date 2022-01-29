@@ -1,8 +1,9 @@
-import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
-import {MatDialogRef} from '@angular/material/dialog';
-import {DbService, FormBuilderComponent, FormBuilderData, SegmentType} from '@jaspero/form-builder';
-import {tap} from 'rxjs/operators';
-import {GithubIssuesOptions} from '../../interfaces/github-issues-options.interface';
+import { ChangeDetectionStrategy, Component, Inject, Injector } from '@angular/core';
+import { MatDialogRef } from '@angular/material/dialog';
+import { FormBuilderComponent, FormBuilderData } from '@jaspero/form-builder';
+import { tap } from 'rxjs/operators';
+import { GithubIssuesOptions } from '../../interfaces/github-issues-options.interface';
+import { OPTIONS } from '../../options';
 
 @Component({
   selector: 'jmsp-issue-dialog',
@@ -12,10 +13,15 @@ import {GithubIssuesOptions} from '../../interfaces/github-issues-options.interf
 })
 export class IssueDialogComponent {
   constructor(
-    @Input() private options: GithubIssuesOptions,
+    @Inject(OPTIONS)
+    private options: GithubIssuesOptions,
     private dialogRef: MatDialogRef<IssueDialogComponent>,
-    private dbService: DbService
-  ) { }
+    private injector: Injector
+  ) {
+    this.dbService = this.injector.get<any>(<any> 'dbService');
+  }
+
+  dbService: any;
 
   data: FormBuilderData = {
     schema: {
@@ -48,7 +54,7 @@ export class IssueDialogComponent {
       }
     },
     segments: [{
-      type: SegmentType.Empty,
+      type: 'empty',
       fields: [
         '/title',
         ...this.options.labels.length && ['/label'],

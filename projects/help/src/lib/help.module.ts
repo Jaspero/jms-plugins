@@ -1,29 +1,17 @@
-import {CommonModule} from '@angular/common';
-import {InjectionToken, ModuleWithProviders, NgModule} from '@angular/core';
-import {MatButtonModule} from '@angular/material/button';
-import {MatDialogModule} from '@angular/material/dialog';
-import {MatIconModule} from '@angular/material/icon';
-import {MatTooltipModule} from '@angular/material/tooltip';
-import {RouterModule} from '@angular/router';
-import {SanitizeModule} from '@jaspero/ng-helpers';
-import {TranslocoModule} from '@ngneat/transloco';
-import {HelpFlyoutComponent} from './components/help-flyout/help-flyout.component';
-import {HelpToggleComponent} from './components/help-toggle/help-toggle.component';
-import {HelpService} from './help.service';
-import {HelpConfig} from './interfaces/help-config.interface';
-
-export const helpConfig = new InjectionToken<HelpConfig>('helpConfig');
-
-export function configWrapper(config: HelpConfig) {
-  return () => ({
-    width: 300,
-    height: 500,
-    top: 20,
-    left: 20,
-    canEdit: ['admin'],
-    ...config
-  })
-}
+import { CommonModule } from '@angular/common';
+import { ModuleWithProviders, NgModule } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatIconModule } from '@angular/material/icon';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { RouterModule } from '@angular/router';
+import { SanitizeModule } from '@jaspero/ng-helpers';
+import { TranslocoModule } from '@ngneat/transloco';
+import { HelpFlyoutComponent } from './components/help-flyout/help-flyout.component';
+import { HelpToggleComponent } from './components/help-toggle/help-toggle.component';
+import { configWrapper, helpConfig } from './help.config';
+import { HelpService } from './help.service';
+import { HelpConfig } from './interfaces/help-config.interface';
 
 @NgModule({
   declarations: [HelpFlyoutComponent, HelpToggleComponent],

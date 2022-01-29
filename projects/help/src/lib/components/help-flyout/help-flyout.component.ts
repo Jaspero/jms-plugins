@@ -10,14 +10,14 @@ import {
   TemplateRef,
   ViewChild
 } from '@angular/core';
-import {MatDialog} from '@angular/material/dialog';
-import {Router} from '@angular/router';
-import {fromEvent, Observable} from 'rxjs';
-import {map, takeUntil} from 'rxjs/operators';
-import {helpConfig} from '../../help.module';
-import {HelpService} from '../../help.service';
-import {HelpArticle} from '../../interfaces/help-article.interface';
-import {HelpConfig} from '../../interfaces/help-config.interface';
+import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
+import { fromEvent, Observable } from 'rxjs';
+import { map, takeUntil } from 'rxjs/operators';
+import { helpConfig } from '../../help.config';
+import { HelpService } from '../../help.service';
+import { HelpArticle } from '../../interfaces/help-article.interface';
+import { HelpConfig } from '../../interfaces/help-config.interface';
 
 @Component({
   selector: 'jmsp-help-flyout',
