@@ -1,26 +1,34 @@
-<div class="notes-wrapper">
-  <div class="note" *ngFor="let note of notes$ | async">
-    <div>
+<ng-container *ngIf="notes; else loading">
+  <div class="notes-wrapper">
+    <div class="note" *ngFor="let note of notes; index as index;">
       <div>
-        <b>{{note.createdOn | date}} - {{note.userName}}</b>
+        <div>
+          <b>{{note.createdOn | date}} - {{note.userName}}</b>
+        </div>
+        <p>{{note.note}}</p>
       </div>
-      <p>{{note.note}}</p>
+      <button mat-icon-button color="warn" [disabled]="user.id !== note.userId" [jpLoadClick]="remove(note.id, index)">
+        <mat-icon>delete</mat-icon>
+      </button>
     </div>
-    <button mat-icon-button color="warn" [disabled]="user.id !== note.userId" [jpLoadClick]="remove(note.id)">
-      <mat-icon>delete</mat-icon>
-    </button>
   </div>
-</div>
 
-<form [formGroup]="form">
-  <mat-form-field class="w-full" appearance="outline">
-    <mat-label>{{'NOTES.LABEL' | transloco}}</mat-label>
-    <textarea matInput cols="30" rows="10" formControlName="note"></textarea>
-  </mat-form-field>
+  <form [formGroup]="form">
+    <mat-form-field class="w-full" appearance="outline">
+      <mat-label>{{'NOTES.LABEL' | transloco}}</mat-label>
+      <textarea matInput cols="30" rows="10" formControlName="note"></textarea>
+    </mat-form-field>
 
-  <div class="flex jc-end">
-    <button mat-stroked-button [disabled]="form.invalid" [jpLoadClick]="submit()">
-      {{'GENERAL.SAVE' | transloco}}
-    </button>
+    <div class="flex jc-end">
+      <button mat-stroked-button [disabled]="form.invalid" [jpLoadClick]="submit()">
+        {{'GENERAL.SAVE' | transloco}}
+      </button>
+    </div>
+  </form>
+</ng-container>
+
+<ng-template #loading>
+  <div class="loading">
+    <mat-spinner diameter="50" color="accent"></mat-spinner>
   </div>
-</form>
+</ng-template>

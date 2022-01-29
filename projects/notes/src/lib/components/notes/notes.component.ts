@@ -1,8 +1,8 @@
-import { ChangeDetectionStrategy, Component, Injector, Input, OnInit } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/firestore';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Injector, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { random } from '@jaspero/utils';
 import { Observable } from 'rxjs';
-import { map, switchMap, take, tap } from 'rxjs/operators';
+import { switchMap, take, tap } from 'rxjs/operators';
 import { Note } from '../../interfaces/note.interface';
 
 @Component({
@@ -14,48 +14,40 @@ import { Note } from '../../interfaces/note.interface';
 export class NotesComponent implements OnInit {
   constructor(
     private injector: Injector,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private cdr: ChangeDetectorRef
   ) {
   }
 
-  @Input()
-  id: string;
+  @Input() id: string;
+  @Input() notesCollection = 'notes';
 
-  module$: Observable<any>;
-  id$: Observable<string>;
-  notes$: Observable<Note[]>;
+  module: any;
+  collection: string;
+  notes: Note[];
 
   user: any;
-  afs: AngularFirestore;
+  db: any;
   form: FormGroup;
 
   ngOnInit() {
-    /**
-     * TODO:
-     * Currently it's only possible to use notes
-     * with firebase
-     */
-    this.afs = this.injector.get<any>(<any> 'dbService').afs;
-
+    this.db = this.injector.get<any>(<any> 'dbService').afs;
     this.user = this.injector.get<any>(<any> 'stateService').user;
-    this.module$ = this.injector.get<Observable<any>>(<any> 'module');
-    this.id$ = this.module$
-      .pipe(
-        map(({id}) =>
-          [id, this.id, 'notes'].join('/')
-        )
-      );
 
-    this.notes$ = this.id$
+    this.injector.get<Observable<any>>(<any> 'module')
       .pipe(
-        switchMap((id) =>
-          this.afs
-            .collection<Note>(id, ref =>
-              ref.orderBy('createdOn', 'desc')
-            )
-            .valueChanges({idField: 'id'})
-        )
-      );
+        take(1),
+        switchMap(module => {
+          this.module = module;
+          this.collection = [module.id, this.id, this.notesCollection].join('/');
+
+          return this.db.getDocumentsSimple(this.collection, {active: 'createdOn', direction: 'desc'})
+        })
+      )
+      .subscribe((notes: any[]) => {
+        this.notes = notes;
+        this.cdr.markForCheck();
+      });
 
     this.form = this.fb.group({
       note: ['', Validators.required]
@@ -63,38 +55,40 @@ export class NotesComponent implements OnInit {
   }
 
   submit() {
-    return () =>
-      this.id$
+    return () => {
+
+      const docIdPrefix = this.module.metadata?.docIdPrefix || module.id.slice(0, 2);
+      const docIdSize = this.module.metadata?.docIdSize || 12;
+      const id = `${docIdPrefix}-${this.collection.slice(0, 2)}-${random.string(docIdSize)}`;
+      const data = {
+        ...this.form.getRawValue(),
+        createdOn: Date.now(),
+        userId: this.user.id,
+        userName: this.user.name || this.user.email
+      };
+
+      return this.db.setDocument(this.collection, id, data)
         .pipe(
-          take(1),
-          switchMap(id =>
-            this.afs
-              .collection(id)
-              .doc(this.afs.createId())
-              .set({
-                ...this.form.getRawValue(),
-                createdOn: Date.now(),
-                userId: this.user.id,
-                userName: this.user.name || this.user.email
-              })
-          ),
           tap(() => {
             this.form.reset();
+            this.notes.push({
+              id,
+              ...data
+            });
+            this.cdr.markForCheck();
           })
         );
+    }
   }
 
-  remove(id: string) {
+  remove(id: string, index: number) {
     return () =>
-      this.id$
+      this.db.removeDocument(this.collection, id)
         .pipe(
-          take(1),
-          switchMap(moduleId =>
-            this.afs
-              .collection(moduleId)
-              .doc(id)
-              .delete()
-          )
-        );
+          tap(() => {
+            this.notes.splice(index, 1);
+            this.cdr.markForCheck();
+          })
+        )
   }
 }
