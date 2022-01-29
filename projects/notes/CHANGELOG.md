@@ -1,3 +1,16 @@
+# @jaspero/jmsp-notes [1.3.0](https://github.com/Jaspero/jms-plugins/compare/@jaspero/jmsp-notes@1.2.0...@jaspero/jmsp-notes@1.3.0) (2022-01-29)
+
+
+### Bug Fixes
+
+* production build ([9e59be0](https://github.com/Jaspero/jms-plugins/commit/9e59be032a64677e705c937f7a05e41940353ee3))
+* **notes:** mising this before module ([2ef2195](https://github.com/Jaspero/jms-plugins/commit/2ef2195f7d6d56f188802cfc4ad69c6ba19c4ee8))
+
+
+### Features
+
+* updates for new version of jms ([4487eb0](https://github.com/Jaspero/jms-plugins/commit/4487eb03c1b72884a1525ab66a2dbb53b00f0f6a))
+
 # @jaspero/jmsp-notes [1.2.0](https://github.com/Jaspero/jms-plugins/compare/@jaspero/jmsp-notes@1.1.0...@jaspero/jmsp-notes@1.2.0) (2021-06-27)
 
 
