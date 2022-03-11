@@ -3,7 +3,7 @@ import {MatDialog} from '@angular/material/dialog';
 import {FormBuilderComponent} from '@jaspero/form-builder';
 import {safeEval} from '@jaspero/utils';
 import {Observable} from 'rxjs';
-import {map, switchMap} from 'rxjs/operators';
+import {map, switchMap, take} from 'rxjs/operators';
 import {QuickEditDialogComponent} from '../quick-edit-dialog/quick-edit-dialog.component';
 
 @Component({
@@ -49,7 +49,8 @@ export class QuickEditComponent implements OnInit {
             .pipe(
               map(value => ({value, module}))
             )
-        )
+        ),
+        take(1)
       )
       .subscribe(({module, value}) => {
         if (module.layout.instance) {
