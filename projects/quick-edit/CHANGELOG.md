@@ -1,3 +1,10 @@
+# @jaspero/jmsp-quick-edit [1.3.0](https://github.com/Jaspero/jms-plugins/compare/@jaspero/jmsp-quick-edit@1.2.0...@jaspero/jmsp-quick-edit@1.3.0) (2022-03-11)
+
+
+### Features
+
+* **quick-edit:** added option for quickEditSegments; extended readme; ([9752d99](https://github.com/Jaspero/jms-plugins/commit/9752d992eb8ceea9973a003f5969a140a3963719))
+
 # @jaspero/jmsp-quick-edit [1.2.0](https://github.com/Jaspero/jms-plugins/compare/@jaspero/jmsp-quick-edit@1.1.0...@jaspero/jmsp-quick-edit@1.2.0) (2022-01-29)
 
 
