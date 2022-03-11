@@ -1,3 +1,10 @@
+## @jaspero/jmsp-quick-edit [1.3.1](https://github.com/Jaspero/jms-plugins/compare/@jaspero/jmsp-quick-edit@1.3.0...@jaspero/jmsp-quick-edit@1.3.1) (2022-03-11)
+
+
+### Bug Fixes
+
+* **quick-edit:** only pull module in once ([bd9b76d](https://github.com/Jaspero/jms-plugins/commit/bd9b76d0952fbe960f2ded69166a99ce00f32619))
+
 # @jaspero/jmsp-quick-edit [1.3.0](https://github.com/Jaspero/jms-plugins/compare/@jaspero/jmsp-quick-edit@1.2.0...@jaspero/jmsp-quick-edit@1.3.0) (2022-03-11)
 
 
