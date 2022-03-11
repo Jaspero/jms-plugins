@@ -1,3 +1,10 @@
+## @jaspero/jmsp-notes [1.3.1](https://github.com/Jaspero/jms-plugins/compare/@jaspero/jmsp-notes@1.3.0...@jaspero/jmsp-notes@1.3.1) (2022-01-29)
+
+
+### Bug Fixes
+
+* **notes:** sort notes in ascending order ([b4905a9](https://github.com/Jaspero/jms-plugins/commit/b4905a9266d2974e6f18d5e39df05f1343fc60a5))
+
 # @jaspero/jmsp-notes [1.3.0](https://github.com/Jaspero/jms-plugins/compare/@jaspero/jmsp-notes@1.2.0...@jaspero/jmsp-notes@1.3.0) (2022-01-29)
 
 
