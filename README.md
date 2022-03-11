@@ -40,6 +40,24 @@ or you can use the `note-view` element in a single instance:
 
 Adds the capability for editing documents through a dialog.
 
+### Setup
+
+1. Install the plugin `npm i --save @jaspero/jmsp-quick-edit`
+2. Import the `JMSPQuickEditModule` in the `ModuleInstanceModule` in your JMS project.
+3. Add translations for quick edit
+  ```json
+    {
+      "QUICK_EDIT": {
+        "TRIGGER_TITLE": "Quick Edit",
+        "TITLE": "Edit"
+      }
+    }
+  ```
+
+You can now use `<jms-e-quick-edit data-id="some-id"></jms-e-quick-edit>`.
+
+It's also possible to override which segments are shown in quick edit by using `metadata.quickEditSegments`.
+
 ## Help FlyOut
 
 A popup for help articles. It's module based and changes dynamically based on what module the user is currently on.

@@ -62,6 +62,8 @@ export class QuickEditComponent implements OnInit {
           }
         }
 
+        const segments = module.metadata?.quickEditSegments || module.layout?.instance?.segments;
+
         this.dialog.open(
           QuickEditDialogComponent,
           {
@@ -71,9 +73,7 @@ export class QuickEditComponent implements OnInit {
                 schema: module.schema,
                 definitions: module.definitions,
                 value,
-                ...module.layout && module.layout.instance && module.layout.instance.segments && {
-                  segments: module.layout.instance.segments
-                }
+                ...segments && {segments}
               },
               module,
               id: this.id,
