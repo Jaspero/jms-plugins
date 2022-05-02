@@ -44,15 +44,19 @@ Adds the capability for editing documents through a dialog.
 
 1. Install the plugin `npm i --save @jaspero/jmsp-quick-edit`
 2. Import the `JMSPQuickEditModule` in the `ModuleInstanceModule` in your JMS project.
-3. Add translations for quick edit
-  ```json
-    {
-      "QUICK_EDIT": {
-        "TRIGGER_TITLE": "Quick Edit",
-        "TITLE": "Edit"
-      }
-    }
-  ```
+3. For translations add the following to your `transloco.config.js`:
+   ```js
+   module.exports = {
+      scopedLibs: [
+        {
+          src: './node_modules/@jaspero/jmsp-qe',
+          dist: ['./projects/cms/src/assets/i18n/']
+        }
+      ]
+    };
+
+   ```
+4. Import translations by running: `transloco:extract-scoped-libs`. 
 
 You can now use `<jms-e-quick-edit data-id="some-id"></jms-e-quick-edit>`.
 
@@ -68,32 +72,20 @@ A popup for help articles. It's module based and changes dynamically based on wh
 2. Import the `JMSPHelpModule` in the `DashboardModule` in your JMS project. You can use `JMSPHelpModule.forRoot()` to configure height, width as well as top and left position.
 3. Add `<jmsp-help-toggle></jmsp-help-toggle>` somewhere in your project (it's mainly intended to go in the layout navigation).
 4. In order to be able to add articles through JMS you will need to install the projects module `npm i --save @jaspero/jmsp-modules` in `setup` as well and add `HELP_PLUGIN_MODULE` to `modules.ts`.
-5. Add translations. This is the english version:
-    ```json
-      "HELP_PLUGIN": {
-        "TITLE": "Help",
-        "NO_MODULE_ARTICLES": "There aren't any articles available for this module.",
-        "GENERAL_ARTICLES": "General",
-        "READ_MORE": "Read More",
-        "INSTANCE": {
-          "GENERAL": "General",
-          "CONTENT": "Content"
-        },
-        "TABLE": {
-          "TITLE": "Title",
-          "MODULE": "Module",
-          "EXCERPT": "Excerpt"
-        },
-        "DEFINITIONS": {
-          "TITLE": "Title",
-          "EXCERPT": "Excerpt",
-          "SHORT_DESCRIPTION": "Short Description",
-          "CONTENT": "Content",
-          "MODULE": "Module"
+5. For translations add the following to your `transloco.config.js`:
+   ```js
+   module.exports = {
+      scopedLibs: [
+        {
+          src: './node_modules/@jaspero/jmsp-help',
+          dist: ['./projects/cms/src/assets/i18n/']
         }
-      }
-    ```
-6. You will also need to add the following firestore index:
+      ]
+    };
+
+   ```
+6. Import translations by running: `transloco:extract-scoped-libs`. 
+7. You will also need to add the following firestore index:
    ```json
    {
      "collectionGroup": "help",

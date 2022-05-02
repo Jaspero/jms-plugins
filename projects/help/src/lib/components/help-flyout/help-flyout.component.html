@@ -1,6 +1,6 @@
 <div class="toolbar">
   <div class="title">
-    {{article ? article.title : ('HELP_PLUGIN.TITLE' | transloco)}}
+    {{article ? article.title : ('jmsp-help.TITLE' | transloco)}}
   </div>
   <div class="actions">
     <button mat-icon-button *ngIf="canEdit" (click)="edit()">
@@ -25,10 +25,10 @@
     <div class="s-article-footer">
       <button mat-button (click)="back()">
         <mat-icon>arrow_back</mat-icon>
-        {{'GENERAL.BACK' | transloco}}
+        {{'BACK' | transloco}}
       </button>
       <button *ngIf="article.full" mat-button (click)="readFull(article)">
-        {{'HELP_PLUGIN.READ_MORE' | transloco}}
+        {{'jmsp-help.READ_MORE' | transloco}}
         <mat-icon>queue</mat-icon>
       </button>
     </div>
@@ -40,7 +40,7 @@
         <div class="articles-title">{{title | transloco}}</div>
 
         <div class="article-empty" *ngIf="!articles.length; else notEmpty;">
-          {{'HELP_PLUGIN.NO_MODULE_ARTICLES' | transloco}}
+          {{'jmsp-help.NO_MODULE_ARTICLES' | transloco}}
         </div>
 
         <ng-template #notEmpty>
@@ -57,7 +57,7 @@
 
     <ng-container *ngIf="generalArticles$ | async as articles">
       <div class="articles" *ngIf="articles.length">
-        <div class="articles-title">{{'HELP_PLUGIN.GENERAL_ARTICLES' | transloco}}</div>
+        <div class="articles-title">{{'jmsp-help.GENERAL_ARTICLES' | transloco}}</div>
         <div class="article" *ngFor="let article of articles" (click)="readMore(article)">
           <div>
             <div class="article-title">{{article.title}}</div>

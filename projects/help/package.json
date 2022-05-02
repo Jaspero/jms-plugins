@@ -1,6 +1,10 @@
 {
   "name": "@jaspero/jmsp-help",
   "version": "0.0.2",
+  "i18n": [{
+    "scope": "jmsp-notes",
+    "path": "assets/i18n"
+  }],
   "peerDependencies": {
     "@angular/common": "^13.0.0",
     "@angular/core": "^13.0.0",

@@ -1,6 +1,6 @@
 export const HELP_PLUGIN_MODULE = {
   id: 'help',
-  name: 'HELP_PLUGIN.TITLE',
+  name: 'jmsp-help.TITLE',
   authorization: {
     read: ['admin', 'user'],
     write: ['admin']
@@ -18,7 +18,7 @@ export const HELP_PLUGIN_MODULE = {
     instance: {
       segments: [
         {
-          title: 'HELP_PLUGIN.INSTANCE.GENERAL',
+          title: 'jmsp-help.INSTANCE.GENERAL',
           fields: [
             '/title',
             '/module',
@@ -26,7 +26,7 @@ export const HELP_PLUGIN_MODULE = {
           ]
         },
         {
-          title: 'HELP_PLUGIN.INSTANCE.CONTENT',
+          title: 'jmsp-help.INSTANCE.CONTENT',
           fields: [
             '/excerpt',
             '/short',
@@ -39,9 +39,9 @@ export const HELP_PLUGIN_MODULE = {
       hideImport: true,
       hideExport: true,
       tableColumns: [
-        {key: '/title', label: 'HELP_PLUGIN.TABLE.TITLE'},
-        {key: '/module', label: 'HELP_PLUGIN.TABLE.MODULE'},
-        {key: '/excerpt', label: 'HELP_PLUGIN.TABLE.EXCERPT'}
+        {key: '/title', label: 'jmsp-help.TABLE.TITLE'},
+        {key: '/module', label: 'jmsp-help.TABLE.MODULE'},
+        {key: '/excerpt', label: 'jmsp-help.TABLE.EXCERPT'}
       ]
     }
   },
@@ -62,27 +62,27 @@ export const HELP_PLUGIN_MODULE = {
     ]
   },
   definitions: {
-    title: {label: 'HELP_PLUGIN.DEFINITIONS.TITLE'},
+    title: {label: 'jmsp-help.DEFINITIONS.TITLE'},
     excerpt: {
-      label: 'HELP_PLUGIN.DEFINITIONS.EXCERPT',
+      label: 'jmsp-help.DEFINITIONS.EXCERPT',
       component: {
         type: 'textarea'
       }
     },
     short: {
-      label: 'HELP_PLUGIN.DEFINITIONS.SHORT_DESCRIPTION',
+      label: 'jmsp-help.DEFINITIONS.SHORT_DESCRIPTION',
       component: {
         type: 'tinymce'
       }
     },
     full: {
-      label: 'HELP_PLUGIN.DEFINITIONS.CONTENT',
+      label: 'jmsp-help.DEFINITIONS.CONTENT',
       component: {
         type: 'tinymce'
       }
     },
     module: {
-      label: 'HELP_PLUGIN.DEFINITIONS.MODULE',
+      label: 'jmsp-help.DEFINITIONS.MODULE',
       component: {
         type: 'select',
         configuration: {

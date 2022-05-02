@@ -1,6 +1,10 @@
 {
   "name": "@jaspero/jmsp-notes",
   "version": "0.0.1",
+  "i18n": [{
+    "scope": "jmsp-help",
+    "path": "assets/i18n"
+  }],
   "peerDependencies": {
     "@angular/common": "^13.0.0",
     "@angular/material": "^13.0.0",
@@ -9,10 +13,6 @@
     "@ngneat/transloco": "^2.21.0",
     "@jaspero/utils": "^1.5.0"
   },
-  "i18n": [{
-    "scope": "notes",
-    "path": "assets/i18n"
-  }],
   "release": {
     "pkgRoot": "../../dist/@jaspero/jmsp-notes",
     "branch": "master",
