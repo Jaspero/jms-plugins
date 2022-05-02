@@ -1,3 +1,10 @@
+# @jaspero/jmsp-quick-edit [1.4.0](https://github.com/Jaspero/jms-plugins/compare/@jaspero/jmsp-quick-edit@1.3.1...@jaspero/jmsp-quick-edit@1.4.0) (2022-05-02)
+
+
+### Features
+
+* added translation for help and quick-edit ([25da738](https://github.com/Jaspero/jms-plugins/commit/25da7389c333cef464fc31df50be9f35531c3685))
+
 ## @jaspero/jmsp-quick-edit [1.3.1](https://github.com/Jaspero/jms-plugins/compare/@jaspero/jmsp-quick-edit@1.3.0...@jaspero/jmsp-quick-edit@1.3.1) (2022-03-11)
 
 
