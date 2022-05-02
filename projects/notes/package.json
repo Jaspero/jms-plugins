@@ -10,7 +10,7 @@
     "@jaspero/utils": "^1.5.0"
   },
   "i18n": [{
-    "scope": "NOTES",
+    "scope": "notes",
     "path": "assets/i18n"
   }],
   "release": {

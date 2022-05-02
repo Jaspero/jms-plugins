@@ -63,7 +63,7 @@ let notesRegistered = false;
     MatRadioGroup,
     {
       provide: TRANSLOCO_SCOPE,
-      useValue: 'NOTES'
+      useValue: 'notes'
     },
   ]
 })
