@@ -1,3 +1,10 @@
+# @jaspero/jmsp-notes [1.6.0](https://github.com/Jaspero/jms-plugins/compare/@jaspero/jmsp-notes@1.5.3...@jaspero/jmsp-notes@1.6.0) (2022-05-02)
+
+
+### Features
+
+* added translation for help and quick-edit ([25da738](https://github.com/Jaspero/jms-plugins/commit/25da7389c333cef464fc31df50be9f35531c3685))
+
 ## @jaspero/jmsp-notes [1.5.3](https://github.com/Jaspero/jms-plugins/compare/@jaspero/jmsp-notes@1.5.2...@jaspero/jmsp-notes@1.5.3) (2022-05-02)
 
 
