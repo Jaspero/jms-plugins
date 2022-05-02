@@ -27,15 +27,6 @@ import { NotesComponent } from './components/notes/notes.component';
 
 let notesRegistered = false;
 
-export function translationsLoader(langs: string[] = ['en'], path: string = 'src/lib/i18n') {
-  const loader = langs.reduce((acc: any, lang: string) => {
-    acc[lang] = () => import(`${path}${lang}.json`);
-    return acc;
-  }, {});
-
-  return {scope: 'notes', loader};
-}
-
 @NgModule({
   declarations: [
     NoteElementComponent,
@@ -72,8 +63,7 @@ export function translationsLoader(langs: string[] = ['en'], path: string = 'src
     MatRadioGroup,
     {
       provide: TRANSLOCO_SCOPE,
-      useFactory: translationsLoader,
-      deps: ['TRASNLATION_LANGUAGES', 'TRANSLATION_PATH']
+      useValue: 'NOTES'
     },
   ]
 })

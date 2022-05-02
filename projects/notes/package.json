@@ -9,6 +9,10 @@
     "@ngneat/transloco": "^2.21.0",
     "@jaspero/utils": "^1.5.0"
   },
+  "i18n": [{
+    "scope": "NOTES",
+    "path": "src/lib/i18n"
+  }],
   "release": {
     "pkgRoot": "../../dist/@jaspero/jmsp-notes",
     "branch": "master",
