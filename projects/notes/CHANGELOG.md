@@ -1,3 +1,10 @@
+## @jaspero/jmsp-notes [1.5.1](https://github.com/Jaspero/jms-plugins/compare/@jaspero/jmsp-notes@1.5.0...@jaspero/jmsp-notes@1.5.1) (2022-05-02)
+
+
+### Bug Fixes
+
+* **notes:** i18n files copied to dist ([85c4489](https://github.com/Jaspero/jms-plugins/commit/85c44895a94cc7da044cb48df608e871e7b67360))
+
 # @jaspero/jmsp-notes [1.5.0](https://github.com/Jaspero/jms-plugins/compare/@jaspero/jmsp-notes@1.4.0...@jaspero/jmsp-notes@1.5.0) (2022-05-02)
 
 
