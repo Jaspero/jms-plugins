@@ -1,3 +1,10 @@
+## @jaspero/jmsp-notes [1.5.2](https://github.com/Jaspero/jms-plugins/compare/@jaspero/jmsp-notes@1.5.1...@jaspero/jmsp-notes@1.5.2) (2022-05-02)
+
+
+### Bug Fixes
+
+* **notes:** changed transloco scope to lowercase ([c6b70ff](https://github.com/Jaspero/jms-plugins/commit/c6b70ff116f8db96dc220aec693ad9adf404f261))
+
 ## @jaspero/jmsp-notes [1.5.1](https://github.com/Jaspero/jms-plugins/compare/@jaspero/jmsp-notes@1.5.0...@jaspero/jmsp-notes@1.5.1) (2022-05-02)
 
 
