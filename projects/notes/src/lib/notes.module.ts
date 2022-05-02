@@ -20,12 +20,21 @@ import { MatSliderModule } from '@angular/material/slider';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { FormBuilderContextService } from '@jaspero/form-builder';
 import { LoadClickModule } from '@jaspero/ng-helpers';
-import { TranslocoModule } from '@ngneat/transloco';
+import { TranslocoModule, TRANSLOCO_SCOPE } from '@ngneat/transloco';
 import { NoteElementComponent } from './components/note-element/note-element.component';
 import { NoteViewComponent } from './components/note-view/note-view.component';
 import { NotesComponent } from './components/notes/notes.component';
 
 let notesRegistered = false;
+
+export function translationsLoader(langs: string[] = ['en'], path: string = 'src/lib/i18n') {
+  const loader = langs.reduce((acc: any, lang: string) => {
+    acc[lang] = () => import(`${path}${lang}.json`);
+    return acc;
+  }, {});
+
+  return {scope: 'notes', loader};
+}
 
 @NgModule({
   declarations: [
@@ -61,6 +70,11 @@ let notesRegistered = false;
     MatCalendar,
     MatAccordion,
     MatRadioGroup,
+    {
+      provide: TRANSLOCO_SCOPE,
+      useFactory: translationsLoader,
+      deps: ['TRASNLATION_LANGUAGES', 'TRANSLATION_PATH']
+    },
   ]
 })
 export class JMSPNotesModule {
