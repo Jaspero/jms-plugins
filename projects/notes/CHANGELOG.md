@@ -1,3 +1,10 @@
+# @jaspero/jmsp-notes [1.5.0](https://github.com/Jaspero/jms-plugins/compare/@jaspero/jmsp-notes@1.4.0...@jaspero/jmsp-notes@1.5.0) (2022-05-02)
+
+
+### Features
+
+* **notes:** adjusted i18n ([905fd91](https://github.com/Jaspero/jms-plugins/commit/905fd919d520c2844697704bfa07825e24c936b7))
+
 # @jaspero/jmsp-notes [1.4.0](https://github.com/Jaspero/jms-plugins/compare/@jaspero/jmsp-notes@1.3.1...@jaspero/jmsp-notes@1.4.0) (2022-05-02)
 
 
