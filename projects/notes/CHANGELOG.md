@@ -1,3 +1,10 @@
+# @jaspero/jmsp-notes [1.4.0](https://github.com/Jaspero/jms-plugins/compare/@jaspero/jmsp-notes@1.3.1...@jaspero/jmsp-notes@1.4.0) (2022-05-02)
+
+
+### Features
+
+* **notes:** publishing translation files with library ([ad0d544](https://github.com/Jaspero/jms-plugins/commit/ad0d544901aab3c8c8f1092f7137f1ead2a43c3a))
+
 ## @jaspero/jmsp-notes [1.3.1](https://github.com/Jaspero/jms-plugins/compare/@jaspero/jmsp-notes@1.3.0...@jaspero/jmsp-notes@1.3.1) (2022-01-29)
 
 
