@@ -1,3 +1,10 @@
+## @jaspero/jmsp-notes [1.6.1](https://github.com/Jaspero/jms-plugins/compare/@jaspero/jmsp-notes@1.6.0...@jaspero/jmsp-notes@1.6.1) (2022-05-02)
+
+
+### Bug Fixes
+
+* help and notes scope mixup ([b48fcbc](https://github.com/Jaspero/jms-plugins/commit/b48fcbcfe7d8fecf05990476411ff888ec87926b))
+
 # @jaspero/jmsp-notes [1.6.0](https://github.com/Jaspero/jms-plugins/compare/@jaspero/jmsp-notes@1.5.3...@jaspero/jmsp-notes@1.6.0) (2022-05-02)
 
 
