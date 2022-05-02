@@ -2,7 +2,7 @@
   "name": "@jaspero/jmsp-help",
   "version": "0.0.2",
   "i18n": [{
-    "scope": "jmsp-notes",
+    "scope": "jmsp-help",
     "path": "assets/i18n"
   }],
   "peerDependencies": {
