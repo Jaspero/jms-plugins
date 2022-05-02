@@ -11,7 +11,7 @@
   },
   "i18n": [{
     "scope": "NOTES",
-    "path": "src/lib/i18n"
+    "path": "assets/i18n"
   }],
   "release": {
     "pkgRoot": "../../dist/@jaspero/jmsp-notes",
