@@ -1,3 +1,10 @@
+## @jaspero/jmsp-notes [1.5.3](https://github.com/Jaspero/jms-plugins/compare/@jaspero/jmsp-notes@1.5.2...@jaspero/jmsp-notes@1.5.3) (2022-05-02)
+
+
+### Bug Fixes
+
+* **notes:** using lowercase scopes ([d415af3](https://github.com/Jaspero/jms-plugins/commit/d415af3f8ca8fd531d61f699fdfad36517db9996))
+
 ## @jaspero/jmsp-notes [1.5.2](https://github.com/Jaspero/jms-plugins/compare/@jaspero/jmsp-notes@1.5.1...@jaspero/jmsp-notes@1.5.2) (2022-05-02)
 
 
