@@ -1,3 +1,10 @@
+## @jaspero/jmsp-notes [1.6.2](https://github.com/Jaspero/jms-plugins/compare/@jaspero/jmsp-notes@1.6.1...@jaspero/jmsp-notes@1.6.2) (2022-05-03)
+
+
+### Bug Fixes
+
+* lang prefixes throughout ([ada776b](https://github.com/Jaspero/jms-plugins/commit/ada776b086842152e12dc130c8e60d2739f50872))
+
 ## @jaspero/jmsp-notes [1.6.1](https://github.com/Jaspero/jms-plugins/compare/@jaspero/jmsp-notes@1.6.0...@jaspero/jmsp-notes@1.6.1) (2022-05-02)
 
 
