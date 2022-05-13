@@ -1,3 +1,10 @@
+## @jaspero/jmsp-quick-edit [1.4.2](https://github.com/Jaspero/jms-plugins/compare/@jaspero/jmsp-quick-edit@1.4.1...@jaspero/jmsp-quick-edit@1.4.2) (2022-05-13)
+
+
+### Bug Fixes
+
+* removed scope definitions from libraries ([72c9481](https://github.com/Jaspero/jms-plugins/commit/72c9481065e4a2cf6fed15d2df0a9a9429bb56de))
+
 ## @jaspero/jmsp-quick-edit [1.4.1](https://github.com/Jaspero/jms-plugins/compare/@jaspero/jmsp-quick-edit@1.4.0...@jaspero/jmsp-quick-edit@1.4.1) (2022-05-03)
 
 
