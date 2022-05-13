@@ -1,3 +1,10 @@
+## @jaspero/jmsp-notes [1.6.3](https://github.com/Jaspero/jms-plugins/compare/@jaspero/jmsp-notes@1.6.2...@jaspero/jmsp-notes@1.6.3) (2022-05-13)
+
+
+### Bug Fixes
+
+* **notes:** using forRoot for scope inclusion ([4a22435](https://github.com/Jaspero/jms-plugins/commit/4a22435522d07358fd276b52d9f7e4d28b272030))
+
 ## @jaspero/jmsp-notes [1.6.2](https://github.com/Jaspero/jms-plugins/compare/@jaspero/jmsp-notes@1.6.1...@jaspero/jmsp-notes@1.6.2) (2022-05-03)
 
 
