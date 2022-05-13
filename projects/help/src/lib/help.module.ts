@@ -6,7 +6,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { RouterModule } from '@angular/router';
 import { SanitizeModule } from '@jaspero/ng-helpers';
-import { TranslocoModule, TRANSLOCO_SCOPE } from '@ngneat/transloco';
+import { TranslocoModule } from '@ngneat/transloco';
 import { HelpFlyoutComponent } from './components/help-flyout/help-flyout.component';
 import { HelpToggleComponent } from './components/help-toggle/help-toggle.component';
 import { configWrapper, helpConfig } from './help.config';
@@ -28,12 +28,6 @@ import { HelpConfig } from './interfaces/help-config.interface';
     SanitizeModule,
 
     TranslocoModule
-  ],
-  providers: [
-    {
-      provide: TRANSLOCO_SCOPE,
-      useValue: 'jmsp-help'
-    },
   ]
 })
 export class JMSPHelpModule {

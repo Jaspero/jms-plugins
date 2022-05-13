@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Injector, ModuleWithProviders, NgModule } from '@angular/core';
+import { Injector, NgModule } from '@angular/core';
 import { createCustomElement } from '@angular/elements';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
@@ -20,7 +20,7 @@ import { MatSliderModule } from '@angular/material/slider';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { FormBuilderContextService } from '@jaspero/form-builder';
 import { LoadClickModule } from '@jaspero/ng-helpers';
-import { TranslocoModule, TRANSLOCO_SCOPE } from '@ngneat/transloco';
+import { TranslocoModule } from '@ngneat/transloco';
 import { NoteElementComponent } from './components/note-element/note-element.component';
 import { NoteViewComponent } from './components/note-view/note-view.component';
 import { NotesComponent } from './components/notes/notes.component';
@@ -56,25 +56,14 @@ let notesRegistered = false;
 
     LoadClickModule,
     TranslocoModule,
+  ],
+  providers: [
+    MatCalendar,
+    MatAccordion,
+    MatRadioGroup
   ]
 })
 export class JMSPNotesModule {
-
-  static forRoot(): ModuleWithProviders<JMSPNotesModule> {
-    return {
-      ngModule: JMSPNotesModule,
-      providers: [
-        MatCalendar,
-        MatAccordion,
-        MatRadioGroup,
-        {
-          provide: TRANSLOCO_SCOPE,
-          useValue: 'jmsp-notes'
-        },
-      ]
-    }
-  }
-
   constructor(
     private injector: Injector,
     private ctx: FormBuilderContextService

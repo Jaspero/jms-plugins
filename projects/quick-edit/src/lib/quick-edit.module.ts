@@ -6,7 +6,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {MatIconModule} from '@angular/material/icon';
 import {FormBuilderContextService, FormBuilderModule} from '@jaspero/form-builder';
 import {LoadClickModule} from '@jaspero/ng-helpers';
-import {TranslocoModule, TRANSLOCO_SCOPE} from '@ngneat/transloco';
+import {TranslocoModule} from '@ngneat/transloco';
 import {QuickEditDialogComponent} from './components/quick-edit-dialog/quick-edit-dialog.component';
 import {QuickEditComponent} from './components/quick-edit/quick-edit.component';
 
@@ -28,12 +28,6 @@ let qeRegistered = false;
 
     LoadClickModule,
     TranslocoModule,
-  ],
-  providers: [
-    {
-      provide: TRANSLOCO_SCOPE,
-      useValue: 'jmsp-qe'
-    }
   ]
 })
 export class JMSPQuickEditModule {
