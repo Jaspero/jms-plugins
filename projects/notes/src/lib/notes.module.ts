@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Injector, NgModule } from '@angular/core';
+import { Injector, ModuleWithProviders, NgModule } from '@angular/core';
 import { createCustomElement } from '@angular/elements';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
@@ -56,18 +56,25 @@ let notesRegistered = false;
 
     LoadClickModule,
     TranslocoModule,
-  ],
-  providers: [
-    MatCalendar,
-    MatAccordion,
-    MatRadioGroup,
-    {
-      provide: TRANSLOCO_SCOPE,
-      useValue: 'jmsp-notes'
-    },
   ]
 })
 export class JMSPNotesModule {
+
+  static forRoot(): ModuleWithProviders<JMSPNotesModule> {
+    return {
+      ngModule: JMSPNotesModule,
+      providers: [
+        MatCalendar,
+        MatAccordion,
+        MatRadioGroup,
+        {
+          provide: TRANSLOCO_SCOPE,
+          useValue: 'jmsp-notes'
+        },
+      ]
+    }
+  }
+
   constructor(
     private injector: Injector,
     private ctx: FormBuilderContextService
