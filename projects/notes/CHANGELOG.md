@@ -1,3 +1,10 @@
+## @jaspero/jmsp-notes [1.6.4](https://github.com/Jaspero/jms-plugins/compare/@jaspero/jmsp-notes@1.6.3...@jaspero/jmsp-notes@1.6.4) (2022-05-13)
+
+
+### Bug Fixes
+
+* removed scope definitions from libraries ([72c9481](https://github.com/Jaspero/jms-plugins/commit/72c9481065e4a2cf6fed15d2df0a9a9429bb56de))
+
 ## @jaspero/jmsp-notes [1.6.3](https://github.com/Jaspero/jms-plugins/compare/@jaspero/jmsp-notes@1.6.2...@jaspero/jmsp-notes@1.6.3) (2022-05-13)
 
 
