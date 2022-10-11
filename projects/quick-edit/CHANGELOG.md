@@ -1,3 +1,10 @@
+## @jaspero/jmsp-quick-edit [1.4.3](https://github.com/Jaspero/jms-plugins/compare/@jaspero/jmsp-quick-edit@1.4.2...@jaspero/jmsp-quick-edit@1.4.3) (2022-10-11)
+
+
+### Bug Fixes
+
+* peer dependency adjustments ([680e1e5](https://github.com/Jaspero/jms-plugins/commit/680e1e5e92b36280b633829e5e5df1a86e3052c9))
+
 ## @jaspero/jmsp-quick-edit [1.4.2](https://github.com/Jaspero/jms-plugins/compare/@jaspero/jmsp-quick-edit@1.4.1...@jaspero/jmsp-quick-edit@1.4.2) (2022-05-13)
 
 
