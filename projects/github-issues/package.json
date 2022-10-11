@@ -2,10 +2,10 @@
   "name": "@jaspero/jmsp-github-issues",
   "version": "0.0.4",
   "peerDependencies": {
-    "@angular/common": "^13.0.0",
-    "@angular/core": "^13.0.0",
-    "@angular/material": "^13.0.0",
-    "@jaspero/fb-tinymce": "^1.4.1"
+    "@angular/common": "*",
+    "@angular/core": "*",
+    "@angular/material": "*",
+    "@jaspero/fb-tinymce": "*"
   },
   "dependencies": {
     "tslib": "^2.0.0"
